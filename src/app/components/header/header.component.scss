@@ -1,0 +1,140 @@
+.main-header-section {
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1.7;
+    color: gray;
+    display: block;
+  
+    .container-wrap {
+      max-width: 1060px;
+      margin: 0 auto;
+      background: #fff;
+    }
+  
+    .banner {
+      #fh5co-logo {
+        font-size: 45px;
+        margin: 15px;
+        font-family: "Libre Baskerville", serif;
+        display: block;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+        position: relative;
+        a {
+          color: #658361;
+          padding: 5px 10px;
+          text-decoration: none;
+        }
+        .mobile-view{
+          position: absolute;
+          right: 20px;
+        }
+        img{
+          width: 80px;
+        }
+        .axa-logo{
+          position: absolute;
+          left: 10px;
+          top: 2px;
+        }
+      }
+  
+    }
+    .navigation-bar {
+      margin: 3px;
+      ul {
+        padding: 20px 0;
+        margin: 0;
+        li {
+          font-family: "Source Sans Pro", sans-serif;
+          padding: 0;
+          margin: 0;
+          list-style: none;
+          display: inline;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          font-weight: 600;
+          a {
+            position: relative;
+            font-size: 13px;
+            padding: 30px 20px;
+            color: rgba(0, 0, 0, 0.8);
+            -webkit-transition: 0.5s;
+            -o-transition: 0.5s;
+            transition: 0.5s;
+            text-decoration: none;
+            
+          }
+        }
+        .active{
+          a{
+            color: #658361;
+          }
+        }
+        li.active > a:after {
+          opacity: 1;
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+        }
+  
+        a:after {
+          position: absolute;
+          top: 6px;
+          left: 0;
+          right: 0;
+          content: "";
+          width: 50%;
+          height: 2px;
+          background: #658361;
+          margin: 0 auto;
+          opacity: 0;
+          -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+          transition: transform 0.3s, opacity 0.3s;
+          -webkit-transform: translate3d(0, 10px, 0);
+          transform: translate3d(0, 10px, 0);
+        }
+  
+        
+      }
+    }
+  
+    .text-right{
+      text-align: right;
+    }
+  
+    @media (max-width: 768px) {
+      .navigation-bar{
+        display: none;
+      }
+      .mobile-view-container{
+        height: 80px;
+      }
+    }
+  
+      @media (min-width: 768px) {
+      .mobile-view{
+        display: none;
+      }
+    }
+  }
+  .modal-dialog{
+    @media (min-width: 300px) {
+      left: calc(100% - 270px);
+      width: 270px;
+      position: absolute;
+      margin: 0;
+    }
+  
+  }
+  
+  .mobile-list{
+    li{
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+  }
+    .modal-content{
+      height: 100vh;
+    }
+

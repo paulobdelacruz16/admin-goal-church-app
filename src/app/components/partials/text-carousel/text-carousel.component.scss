@@ -1,0 +1,52 @@
+.carousel-section-main {
+  padding: 5em 1em;
+  clear: both;
+  background: #658361;
+
+  .banner-image {
+    max-height: 396px;
+    height: auto;
+  }
+  .carousel-item {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom center;
+    height: 300px;
+    position: relative;
+  }
+
+  .carousel-description {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    padding: 5px;
+
+    transform: translate(-50%, -50%);
+    h1{
+      font-size: 28px;
+      color: #fff46fe8;
+    }
+    h4{
+      font-size: 18px;
+      color: #fff46fe8;
+    }
+
+    @media (max-width: 768px ){
+      h1{
+        font-size: 22px;
+      }
+      h4{
+        font-size: 15px;
+        color: #fff46fe8;
+      }
+    }
+  }
+
+  .carousel-control-prev{
+    display: none;
+  }
+  .carousel-control-next{
+    display: none;
+  }
+}
