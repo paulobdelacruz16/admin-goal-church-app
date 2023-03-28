@@ -19,6 +19,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { VideoCarouselComponent } from './components/partials/video-carousel/video-carousel.component';
 import { BoxListVideoComponent } from './components/partials/box-list-video/box-list-video.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -40,15 +41,12 @@ import { BoxListVideoComponent } from './components/partials/box-list-video/box-
     BoxListVideoComponent
   ],
   imports: [
-    BrowserModule,
+    CarouselModule.forRoot(),
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
-    CarouselModule,
+    CommonModule,
     ModalModule.forRoot()
-  ],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA,
-    NO_ERRORS_SCHEMA
   ],
   providers: [],
   bootstrap: [AppComponent]

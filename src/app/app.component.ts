@@ -1,6 +1,8 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Meta } from '@angular/platform-browser';  
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +11,24 @@ import { Meta } from '@angular/platform-browser';
 })
 export class AppComponent implements OnInit {
   title = 'goal-church-app';
-  constructor(private meta: Meta) {}
+
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: object, private meta: Meta) {
+  }
+
   navlist: any
   selectedNavId: any
   modalRef?: BsModalRef;
+  browser:any;
   ngOnInit(): void {
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.browser = true;
+    const navMain = document.getElementById('navbarCollapse');
+    console.log('test123', window.location.href);
+
+    console.log('2222',navMain);
+
      this.navlist = [
       { name: 'Home', src: "home" },
       { name: 'Sermons',  src: "sermons" },
@@ -32,6 +47,7 @@ export class AppComponent implements OnInit {
       { property: 'og:url', content: 'https://www.goalchurch.com'},
     ]); 
   }
+}
 
   clickNavigation(value: number){
     this.selectedNavId = value;

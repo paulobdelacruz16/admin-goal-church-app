@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.href = this.router.url;
-    console.log(this.router);
+    // console.log(this.router);
     this.navlist = [
       { name: 'Home', src: '/home', url: 'home'},
       { name: 'Sermons', src: '/sermons', url: 'home'},
