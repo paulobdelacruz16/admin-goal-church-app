@@ -20,6 +20,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { VideoCarouselComponent } from './components/partials/video-carousel/video-carousel.component';
 import { BoxListVideoComponent } from './components/partials/box-list-video/box-list-video.component';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ModalView01Component } from './components/partials/modal-view-01/modal-view01.component';
+import { AboutComponent } from './components/about/about.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -29,6 +33,7 @@ import { CommonModule } from '@angular/common';
     AppComponent,
     HomeComponent,
     NewsComponent,
+    AboutComponent,
     ContactComponent,
     DonateComponent,
     SermonsComponent,
@@ -38,7 +43,8 @@ import { CommonModule } from '@angular/common';
     FooterComponent,
     HeaderComponent,
     VideoCarouselComponent,
-    BoxListVideoComponent
+    BoxListVideoComponent,
+    ModalView01Component
   ],
   imports: [
     CarouselModule.forRoot(),
@@ -46,7 +52,9 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     BrowserAnimationsModule,
     CommonModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

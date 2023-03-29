@@ -52,6 +52,6 @@ export class HeaderComponent implements OnInit {
 
   openModal(template: TemplateRef<any>) {
     console.log('test');
-    this.modalRef = this.modalService.show(template);
+    this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'navigation-modal' }));
   }
 }

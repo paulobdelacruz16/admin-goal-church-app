@@ -1,3 +1,19 @@
-<div>
-  about page
+<div class="group-01">
+  <h1>Section 1</h1>
+  <form [formGroup]="group1" (ngSubmit)="onSubmit()" novalidate>
+    <table id="customers">
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>URL</th>
+        <th>Image</th>
+      </tr>
+      <tr (click)="openModal(item)" *ngFor="let item of itemListData1.data; index as id" click>
+        <td>{{item.name}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.url}}</td>
+        <td>{{item.image}}</td>
+      </tr>
+    </table>
+  </form>
 </div>
