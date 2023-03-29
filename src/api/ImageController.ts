@@ -18,7 +18,7 @@ export class ImageController {
         return console.log('Unable to scan directory: ' + err);
       }
 
-      res.status(200).send({ data: files });
+      res.status(200).send({ data: files, location: directoryPath });
     });
   }
 }
