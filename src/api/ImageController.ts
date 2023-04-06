@@ -1,4 +1,5 @@
 export class ImageController {
+  
   getImages(req: any, res: any) {
     // console.log(res, req)
     console.log('heey');
@@ -8,7 +9,7 @@ export class ImageController {
     const fs = require('fs');
     //joining path of directory
     console.log('__dirname', __dirname);
-    const directoryPath = path.join(__dirname, '../../../../public_image');
+    const directoryPath = path.join(__dirname, '../../../../image server/images');
     //passsing directoryPath and callback function
     console.log('directoryPath', directoryPath);
 

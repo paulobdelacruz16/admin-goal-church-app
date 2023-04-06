@@ -9,7 +9,6 @@ import { join } from 'path';
 import { AppServerModule } from './src/main.server';
 import { Routes } from 'routes';
 
-
 // // ssr DOM
 // const domino = require('domino');
 // const fs = require('fs');
@@ -58,8 +57,10 @@ export function app(): express.Express {
   }));
 
   // All regular routes use the Universal engine
-
-  routes.apiRoutes(server)
+  const path = require('path');
+  const directoryPath = path.join(__dirname, '../../../../public_images');
+  server.use('/images', express.static(directoryPath));
+  routes.apiRoutes(server);
   server.get('*', (req, res) => {
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });

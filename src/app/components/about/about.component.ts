@@ -12,6 +12,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { ConfigService } from 'src/app/services/config.service';
 
 @Component({
   selector: 'app-about',
@@ -23,7 +24,9 @@ export class AboutComponent implements OnInit {
   modalRef?: BsModalRef;
   constructor(
     private modalService: BsModalService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private configService: ConfigService
+
   ) {
     this.createForm();
   }
@@ -37,8 +40,9 @@ export class AboutComponent implements OnInit {
     url: new FormControl(),
   });
   itemListData1:any;
+  pageUrl:any;
   ngOnInit(): void {
-    console.log('homepage');
+    console.log('homepage', window.location.host);
     this.itemListData1 = {
       title: 'Services',
       description: 'Come, let us worship and bow down, Let us kneel before the Lord our Maker',
@@ -71,12 +75,22 @@ export class AboutComponent implements OnInit {
   }
 
   openModal(item:any) {
-    const initialState: ModalOptions = {
-      initialState: {
-        selectedMainData: item,
-      }
-    };
-    this.modalRef = this.modalService.show(ModalView01Component, initialState);
+
+
+    this.configService.getAllImages().subscribe((data: any) => {
+      console.log('success', data);
+      const pageUrl = `/images/`;
+      const initialState: ModalOptions = {
+        initialState: {
+          selectedMainData: item,
+          apiImages: data,
+          pageUrl
+        }
+      };
+      this.modalRef = this.modalService.show(ModalView01Component, initialState);
+    }); 
+
+
   }
 
   createForm() {

@@ -161,14 +161,14 @@
       <div class="modal-body row">
           <div
             class="animate-box col-md-3"
-            *ngFor="let item of itemListData1.data; index as id"
+            *ngFor="let item of apiImages.data; index as id"
           >
             <div class="services">
-              <a (click)="selectImage(item)" class="img-holder" *ngIf="item.image"
+              <a (click)="selectImage(item)" class="img-holder" *ngIf="item"
                 ><img
                   class="img-responsive"
-                  [src]="item.image"
-                  alt="{{ item.name }}"
+                  [src]="pageUrl + item"
+                  alt="{{ item }}"
               /></a>
             </div>
           </div>

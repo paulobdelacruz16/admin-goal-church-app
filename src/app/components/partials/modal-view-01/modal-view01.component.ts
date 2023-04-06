@@ -4,6 +4,7 @@ import {
   OnInit,
   ViewEncapsulation,
   Input,
+  ViewChild,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -11,7 +12,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef, ModalDirective } from 'ngx-bootstrap/modal';
 import { ConfigService } from 'src/app/services/config.service';
 
 @Component({
@@ -21,6 +22,7 @@ import { ConfigService } from 'src/app/services/config.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class ModalView01Component implements OnInit {
+  @ViewChild('childModal', { static: false }) childModal?: ModalDirective;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,104 +44,16 @@ export class ModalView01Component implements OnInit {
   });
   itemListData1:any;
   selectedMainData: any;
+  apiImages:any;
+  hostname:any;
+  pageUrl:any;
   ngOnInit(): void {
     console.log('selectedDataMain', this.selectedMainData);
+    // console.log('apiImages', this.apiImages);
+    // console.log('document', window.location.hostname);
     this.modalRef?.setClass('modal-lg');
-    this.itemListData1 = {
-      title: 'Services',
-      description: 'Come, let us worship and bow down, Let us kneel before the Lord our Maker',
-      data: [
-      {
-        name: 'Worship Service',
-        image:
-          'https://drive.google.com/uc?id=1cOCMOSO2MxneXphQz-dX7SYxqHTvUbuY',
-      },
-      {
-        name: 'Prayer Meeting',
-        image:
-          'https://drive.google.com/uc?id=1KwJcJ7Mu1I3TpMWkFkI_BlXutGGHLzzQ',
-      },
-      {
-        name: 'Helping Children',
-        image:
-          'https://drive.google.com/uc?id=1rV865wuvjhn19TwaJdMHGQeUs-6i8GuS',
-      },{
-        name: 'Worship Service',
-        image:
-          'https://drive.google.com/uc?id=1cOCMOSO2MxneXphQz-dX7SYxqHTvUbuY',
-      },
-      {
-        name: 'Prayer Meeting',
-        image:
-          'https://drive.google.com/uc?id=1KwJcJ7Mu1I3TpMWkFkI_BlXutGGHLzzQ',
-      },
-      {
-        name: 'Helping Children',
-        image:
-          'https://drive.google.com/uc?id=1rV865wuvjhn19TwaJdMHGQeUs-6i8GuS',
-      },{
-        name: 'Worship Service',
-        image:
-          'https://drive.google.com/uc?id=1cOCMOSO2MxneXphQz-dX7SYxqHTvUbuY',
-      },
-      {
-        name: 'Prayer Meeting',
-        image:
-          'https://drive.google.com/uc?id=1KwJcJ7Mu1I3TpMWkFkI_BlXutGGHLzzQ',
-      },
-      {
-        name: 'Helping Children',
-        image:
-          'https://drive.google.com/uc?id=1rV865wuvjhn19TwaJdMHGQeUs-6i8GuS',
-      },{
-        name: 'Worship Service',
-        image:
-          'https://drive.google.com/uc?id=1cOCMOSO2MxneXphQz-dX7SYxqHTvUbuY',
-      },
-      {
-        name: 'Prayer Meeting',
-        image:
-          'https://drive.google.com/uc?id=1KwJcJ7Mu1I3TpMWkFkI_BlXutGGHLzzQ',
-      },
-      {
-        name: 'Helping Children',
-        image:
-          'https://drive.google.com/uc?id=1rV865wuvjhn19TwaJdMHGQeUs-6i8GuS',
-      },{
-        name: 'Worship Service',
-        image:
-          'https://drive.google.com/uc?id=1cOCMOSO2MxneXphQz-dX7SYxqHTvUbuY',
-      },
-      {
-        name: 'Prayer Meeting',
-        image:
-          'https://drive.google.com/uc?id=1KwJcJ7Mu1I3TpMWkFkI_BlXutGGHLzzQ',
-      },
-      {
-        name: 'Helping Children',
-        image:
-          'https://drive.google.com/uc?id=1rV865wuvjhn19TwaJdMHGQeUs-6i8GuS',
-      },{
-        name: 'Worship Service',
-        image:
-          'https://drive.google.com/uc?id=1cOCMOSO2MxneXphQz-dX7SYxqHTvUbuY',
-      },
-      {
-        name: 'Prayer Meeting',
-        image:
-          'https://drive.google.com/uc?id=1KwJcJ7Mu1I3TpMWkFkI_BlXutGGHLzzQ',
-      },
-      {
-        name: 'Helping Children',
-        image:
-          'https://drive.google.com/uc?id=1rV865wuvjhn19TwaJdMHGQeUs-6i8GuS',
-      }
-    ],
-
-    
-    };
   }
-
+  
   createForm() {
     this.group1 = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(10)]],
@@ -158,12 +72,10 @@ export class ModalView01Component implements OnInit {
   }
 
   savechanges(){
-    console.log('save');
-    this.configService.getImages(this.selectedMainData).subscribe((data: any) => {
-      
-      console.log('success', data);
-    });
-    
+    if(this.group1.status === 'VALID'){
+      console.log('this.group1', this.group1.value);
+      console.log('submitted');
+    };
   }
 
   deletechanges(){
@@ -171,7 +83,9 @@ export class ModalView01Component implements OnInit {
   }
 
   selectImage(item:any){
-    this.selectedMainData.image = item.name;
+    console.log('image selected', item);
+    this.childModal?.hide();
+    this.selectedMainData.image = item;
+    this.group1.controls['image'].setValue(item);
   }
-
 }

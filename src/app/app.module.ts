@@ -24,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ModalView01Component } from './components/partials/modal-view-01/modal-view01.component';
 import { AboutComponent } from './components/about/about.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SafeHtmlPipe } from './pipe/safe-html.pipe';
 
 
 
@@ -44,7 +45,8 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     VideoCarouselComponent,
     BoxListVideoComponent,
-    ModalView01Component
+    ModalView01Component,
+    SafeHtmlPipe
   ],
   imports: [
     CarouselModule.forRoot(),

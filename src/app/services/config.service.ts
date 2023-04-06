@@ -20,4 +20,9 @@ export class ConfigService {
     return this.http.get<any>(`api/images`);
   }
 
+
+  getAllImages(): Observable<any> {
+    return this.http.get<any>(`api/images`);
+  }
+
 }
