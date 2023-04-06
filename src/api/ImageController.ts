@@ -9,7 +9,7 @@ export class ImageController {
     const fs = require('fs');
     //joining path of directory
     console.log('__dirname', __dirname);
-    const directoryPath = path.join(__dirname, '../../../../image server/images');
+    const directoryPath = path.join(__dirname, '../../../../public_images');
     //passsing directoryPath and callback function
     console.log('directoryPath', directoryPath);
 
