@@ -25,8 +25,7 @@ import { ModalView01Component } from './components/partials/modal-view-01/modal-
 import { AboutComponent } from './components/about/about.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SafeHtmlPipe } from './pipe/safe-html.pipe';
-
-
+import { AdminComponent } from './components/admin/admin.component';
 
 
 @NgModule({
@@ -46,7 +45,8 @@ import { SafeHtmlPipe } from './pipe/safe-html.pipe';
     VideoCarouselComponent,
     BoxListVideoComponent,
     ModalView01Component,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    AdminComponent
   ],
   imports: [
     CarouselModule.forRoot(),
