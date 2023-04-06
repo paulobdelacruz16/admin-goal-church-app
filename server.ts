@@ -8,6 +8,7 @@ import { join } from 'path';
 
 import { AppServerModule } from './src/main.server';
 import { Routes } from 'routes';
+var bodyParser = require('body-parser');
 
 // // ssr DOM
 // const domino = require('domino');
@@ -59,6 +60,11 @@ export function app(): express.Express {
   // All regular routes use the Universal engine
   const path = require('path');
   const directoryPath = path.join(__dirname, '../../../../public_images');
+  server.use(bodyParser.urlencoded({
+    extended: true
+  }));
+  server.use(bodyParser.json());
+
   server.use('/images', express.static(directoryPath));
   routes.apiRoutes(server);
   server.get('*', (req, res) => {

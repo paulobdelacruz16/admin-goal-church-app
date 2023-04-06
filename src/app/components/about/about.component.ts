@@ -40,6 +40,7 @@ export class AboutComponent implements OnInit {
     url: new FormControl(),
   });
   itemListData1:any;
+  section1:any;
   pageUrl:any;
   ngOnInit(): void {
     console.log('homepage', window.location.host);
@@ -72,11 +73,14 @@ export class AboutComponent implements OnInit {
         url: '#sampleurl-test03',
       }],
     };
+
+    this.configService.getAllSection1().subscribe((data: any) => {
+      console.log('success123', data);
+      this.section1 = data
+    });
   }
 
   openModal(item:any) {
-
-
     this.configService.getAllImages().subscribe((data: any) => {
       console.log('success', data);
       const pageUrl = `/images/`;
@@ -88,9 +92,7 @@ export class AboutComponent implements OnInit {
         }
       };
       this.modalRef = this.modalService.show(ModalView01Component, initialState);
-    }); 
-
-
+    });
   }
 
   createForm() {

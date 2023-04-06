@@ -52,8 +52,18 @@ export class ModalView01Component implements OnInit {
     // console.log('apiImages', this.apiImages);
     // console.log('document', window.location.hostname);
     this.modalRef?.setClass('modal-lg');
+    this.setInitialValue();
   }
-  
+
+  setInitialValue(){
+    if(this.selectedMainData){
+      this.group1.controls['name'].setValue(this.selectedMainData.name);
+      this.group1.controls['description'].setValue(this.selectedMainData.description);
+      this.group1.controls['image'].setValue(this.selectedMainData.image);
+      this.group1.controls['url'].setValue(this.selectedMainData.url);
+    }
+  }
+
   createForm() {
     this.group1 = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(10)]],
@@ -75,12 +85,20 @@ export class ModalView01Component implements OnInit {
     if(this.group1.status === 'VALID'){
       console.log('this.group1', this.group1.value);
       console.log('submitted');
+      this.configService.putSection1({body: this.group1.value, id: this.selectedMainData._id}).subscribe((data: any) => {
+        console.log('success', data);
+        this.modalRef?.hide();
+      });
     };
   }
 
   deletechanges(){
     console.log('delete');
-  }
+    this.configService.deleteSection1({id: this.selectedMainData._id}).subscribe((data: any) => {
+      console.log('success', data);
+      this.modalRef?.hide();
+    });
+  };
 
   selectImage(item:any){
     console.log('image selected', item);

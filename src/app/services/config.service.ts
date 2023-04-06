@@ -16,13 +16,27 @@ export class ConfigService {
   // }
 
   getImages(item:any): Observable<any> {
-    console.log('item', item);
     return this.http.get<any>(`api/images`);
   }
 
-
   getAllImages(): Observable<any> {
     return this.http.get<any>(`api/images`);
+  }
+
+  getAllSection1(): Observable<any> {
+    return this.http.get<any>(`api/section1`);
+  }
+
+  postSection1(data:any): Observable<any> {
+    return this.http.post<any>('api/section1', data)
+  }
+
+  putSection1(data:any): Observable<any> {
+    return this.http.put<any>('api/section1', data)
+  }
+
+  deleteSection1(data:any): Observable<any> {
+    return this.http.delete<any>(`api/section1/:${data.id}`)
   }
 
 }
