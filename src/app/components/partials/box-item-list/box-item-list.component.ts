@@ -11,6 +11,8 @@ export class BoxItemListComponent implements OnInit {
   myInterval = 150000000;
   @Input() itemListData:any;
   @Input() numberofItem:any;
+  pageUrl:any
   ngOnInit(): void {
+    this.pageUrl = "/images/"
   }
 }

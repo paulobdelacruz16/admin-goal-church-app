@@ -1,4 +1,4 @@
-<div class="box-item-list">
+<div class="box-item-list" *ngIf="itemListData">
   <div class="row animate-box description-box">
     <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
       <h2>{{itemListData.title}}</h2>
@@ -15,7 +15,7 @@
     >
       <div class="services">
         <a href="#" class="img-holder" *ngIf="item.image"
-          ><img class="img-responsive" [src]="item.image" alt="{{ item.name }}"
+          ><img class="img-responsive" [src]="pageUrl + item.image" alt="{{ item.name }}"
         /></a>
         <div class="desc">
           <h3>

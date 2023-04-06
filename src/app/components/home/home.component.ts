@@ -15,6 +15,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ConfigService } from 'src/app/services/config.service';
 
 @Component({
   selector: 'app-home',
@@ -24,9 +25,20 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class HomeComponent implements OnInit {
   modalRef?: BsModalRef;
-  constructor(private modalService: BsModalService) {}
+  constructor(private modalService: BsModalService,
+    private configService: ConfigService
+    ) {
+      this.configService.getAllSection1().subscribe((content: any) => {
+        this.section1 = content
+        this.itemListData1 = {
+          title: 'Services',
+          description: 'Come, let us worship and bow down, Let us kneel before the Lord our Maker',
+          data: content.data,
+        };
+      });
+    }
   myInterval = 150000000;
-
+  section1:any
   itemListData1: any;
   itemListData2: any;
   videoListData: any;
@@ -34,35 +46,9 @@ export class HomeComponent implements OnInit {
   itemListData4: any;
   ngOnInit(): void {
     console.log('homepage');
-    this.itemListData1 = {
-      title: 'Services',
-      description: 'Come, let us worship and bow down, Let us kneel before the Lord our Maker',
-      data: [
-      {
-        name: 'Worship Service',
-        description:
-          'Worship the LORD with gladness; come before him with joyful songs.',
-        image:
-          'https://drive.google.com/uc?id=1cOCMOSO2MxneXphQz-dX7SYxqHTvUbuY',
-        url: '#',
-      },
-      {
-        name: 'Prayer Meeting',
-        description:
-          'Devote yourselves to prayer, being watchful and thankful.',
-        image:
-          'https://drive.google.com/uc?id=1KwJcJ7Mu1I3TpMWkFkI_BlXutGGHLzzQ',
-        url: '#',
-      },
-      {
-        name: 'Helping Children',
-        description:
-          'Train up a child in the way he should go; even when he is old he will not depart from it.',
-        image:
-          'https://drive.google.com/uc?id=1rV865wuvjhn19TwaJdMHGQeUs-6i8GuS',
-        url: '#',
-      }],
-    };
+
+
+ 
     this.itemListData2 = {
       title: 'Events',
       description: 'Sample Description123',
