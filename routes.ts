@@ -1,9 +1,10 @@
 import {ImageController} from './src/api/ImageController'
 import { Section1Controller } from './src/api/section1Controller'
+import { UploadImageController } from './src/api/uploadImageController'
 
 const imageController = new ImageController();
 const section1Controller = new Section1Controller();
-
+const uploadImageController = new UploadImageController();
 
 export class Routes{
     public apiRoutes(server:any): void{
@@ -12,6 +13,6 @@ export class Routes{
         server.post('/api/section1', section1Controller.postData);
         server.put('/api/section1', section1Controller.updateData);
         server.delete('/api/section1/:id', section1Controller.deleteData);
-
+        server.post('/api/uploadImage',  uploadImageController.uploadImages);
     }
 }

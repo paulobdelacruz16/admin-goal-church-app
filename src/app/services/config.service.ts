@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -9,6 +9,11 @@ export class ConfigService {
 
   public baseUrl = "https://ti-react-test.herokuapp.com/users";
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "multipart/form-data"
+    })
+  }
   constructor(private http: HttpClient) { }
 
   // public getImag(): Observable<any> {
@@ -37,6 +42,10 @@ export class ConfigService {
 
   deleteSection1(data:any): Observable<any> {
     return this.http.delete<any>(`api/section1/:${data.id}`)
+  }
+
+  uploadImages(image: any): Observable<any> {    
+    return this.http.post<any>('/api/uploadImage', image)
   }
 
 }

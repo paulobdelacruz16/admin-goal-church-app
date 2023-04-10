@@ -26,6 +26,7 @@ import { AboutComponent } from './components/about/about.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SafeHtmlPipe } from './pipe/safe-html.pipe';
 import { AdminComponent } from './components/admin/admin.component';
+import { UploadImageComponent } from './components/partials/upload-image/upload-image.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { AdminComponent } from './components/admin/admin.component';
     BoxListVideoComponent,
     ModalView01Component,
     SafeHtmlPipe,
-    AdminComponent
+    AdminComponent,
+    UploadImageComponent
   ],
   imports: [
     CarouselModule.forRoot(),
