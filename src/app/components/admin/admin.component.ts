@@ -4,7 +4,9 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
+import { ModalView02Component  } from "../partials/modal-view-02/modal-view02.component"
 import { ModalView01Component  } from "../partials/modal-view-01/modal-view01.component"
+
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import {
   FormBuilder,
@@ -109,6 +111,20 @@ export class AdminComponent implements OnInit {
   }
 
   selectImage(){
+    this.modalRef?.hide();
+  }
 
+  deleteImage(){
+    this.configService.getAllImages().subscribe((data: any) => {
+      console.log('success', data);
+      const pageUrl = `/images/`;
+      const initialState: ModalOptions = {
+        initialState: {
+          apiImages: data,
+          pageUrl
+        }
+      };
+      this.modalRef = this.modalService.show(ModalView02Component, initialState);
+    });
   }
 }

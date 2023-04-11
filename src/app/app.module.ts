@@ -27,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SafeHtmlPipe } from './pipe/safe-html.pipe';
 import { AdminComponent } from './components/admin/admin.component';
 import { UploadImageComponent } from './components/partials/upload-image/upload-image.component';
+import { ModalView02Component } from './components/partials/modal-view-02/modal-view02.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { UploadImageComponent } from './components/partials/upload-image/upload-
     VideoCarouselComponent,
     BoxListVideoComponent,
     ModalView01Component,
+    ModalView02Component,
     SafeHtmlPipe,
     AdminComponent,
     UploadImageComponent

@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <h4 id="dialog-nested-name2" class="modal-title pull-left">
+    Upload Image
+  </h4>
+  <button (click)="deleteImage()">
+    Delete Image
+  </button>
+  <button
+    type="button"
+    class="btn-close close pull-right"
+    aria-label="Close"
+    (click)="modalRef.hide()"
+  >
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body row">
+  <div
+    class="animate-box col-md-3"
+    *ngFor="let item of apiImages.data; index as id"
+  >
+    <div class="services">
+      <a (click)="selectImage(item)" class="img-holder" *ngIf="item"
+        ><img
+          class="img-responsive"
+          [src]="pageUrl + item"
+          alt="{{ item }}"
+      /></a>
+    </div>
+  </div>
+</div>

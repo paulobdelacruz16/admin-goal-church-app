@@ -48,4 +48,8 @@ export class ConfigService {
     return this.http.post<any>('/api/uploadImage', image)
   }
 
+  deleteImage(name: any): Observable<any> {   
+    return this.http.delete<any>(`api/deleteImage/:${name}`)
+  }
+
 }

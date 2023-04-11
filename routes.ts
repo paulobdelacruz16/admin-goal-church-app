@@ -14,5 +14,6 @@ export class Routes{
         server.put('/api/section1', section1Controller.updateData);
         server.delete('/api/section1/:id', section1Controller.deleteData);
         server.post('/api/uploadImage',  uploadImageController.uploadImages);
+        server.delete('/api/deleteImage/:name',  imageController.deleteImage);
     }
 }
