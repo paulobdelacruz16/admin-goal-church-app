@@ -1,9 +1,1 @@
-<div class="goal-church-main container-wrap" *ngIf="browser">
-  <div class="container-wrap">
-    <app-header></app-header>
-    <div class="main-body">
-      <router-outlet></router-outlet>
-    </div>
-    <app-footer></app-footer>
-  </div>
-</div>
+<router-outlet *ngIf="browser"></router-outlet>

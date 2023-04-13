@@ -10,28 +10,6 @@ import { AppServerModule } from './src/main.server';
 import { Routes } from 'routes';
 var bodyParser = require('body-parser');
 
-// // ssr DOM
-// const domino = require('domino');
-// const fs = require('fs');
-// const path = require('path');
-// // index from browser build!
-// const template = fs.readFileSync(path.join('.', 'dist/goal-church-app/browser', 'index.html')).toString();
-// // for mock global window by domino
-// const win = domino.createWindow(template);
-// // mock
-// global['window'] = win;
-// // not implemented property and functions
-// Object.defineProperty(win.document.body.style, 'transform', {
-//   value: () => {
-//     return {
-//       enumerable: true,
-//       configurable: true,
-//     };
-//   },
-// });
-// // mock documnet
-// global['document'] = win.document;
-// // othres mock
 
 
 
@@ -49,8 +27,7 @@ export function app(): express.Express {
   server.set('view engine', 'html');
   server.set('views', distFolder);
 
-  // Example Express Rest API endpoints
-  // server.get('/api/**', (req, res) => { });
+
   // Serve static files from /browser
   const routes: Routes = new Routes();
   server.get('*.*', express.static(distFolder, {
