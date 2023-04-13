@@ -15,6 +15,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ConfigService } from 'src/app/services/config.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -31,6 +32,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private modalService: BsModalService,
     private formBuilder: FormBuilder,
+    private configService: ConfigService,
+    private router: Router
   ) {
     this.createForm();
   }
@@ -39,7 +42,6 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log('loginpage');
   }
 
   createForm() {
@@ -49,11 +51,12 @@ export class LoginComponent implements OnInit {
     });
   }
   onSubmit(){
-    console.log('submitted');
     if(this.loginGroup.status === 'VALID'){
-      console.log('valid');
-      
 
+      this.configService.findLoginCredential(this.loginGroup.value).subscribe((data: any) => {
+        sessionStorage.setItem("login", 'true');
+        this.router.navigate(['/admin'])
+      });
     }
   }
 }

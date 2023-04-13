@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { ModalView02Component  } from "../partials/modal-view-02/modal-view02.component"
 import { ModalView01Component  } from "../partials/modal-view-01/modal-view01.component"
+import {Router} from "@angular/router"
 
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import {
@@ -27,10 +28,14 @@ export class AdminComponent implements OnInit {
   constructor(
     private modalService: BsModalService,
     private formBuilder: FormBuilder,
-    private configService: ConfigService
-
+    private configService: ConfigService,
+    private router: Router
   ) {
     this.createForm();
+    let isAuthenticated = sessionStorage.getItem("login");
+    if(!isAuthenticated){
+      this.router.navigate(['/login'])
+    }
   }
 
   myInterval = 150000000;

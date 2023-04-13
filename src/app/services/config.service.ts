@@ -52,4 +52,8 @@ export class ConfigService {
     return this.http.delete<any>(`api/deleteImage/:${name}`)
   }
 
+  findLoginCredential(data: any): Observable<any> {   
+    return this.http.post<any>('/ng/api/loginCredential', data)
+  }
+
 }
