@@ -19,8 +19,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ModalView01Component } from '../../components/partials/modal-view-01/modal-view01.component';
 import { AboutComponent } from '../../components/about/about.component';
 import { SafeHtmlPipe } from '../../pipe/safe-html.pipe';
-import { AdminComponent } from '../../components/admin/admin.component';
-import { UploadImageComponent } from '../../components/partials/upload-image/upload-image.component';
 import { ModalView02Component } from '../../components/partials/modal-view-02/modal-view02.component';
 import { MainComponent } from './main.component';
 
@@ -44,8 +42,6 @@ import { MainComponent } from './main.component';
     ModalView01Component,
     ModalView02Component,
     SafeHtmlPipe,
-    AdminComponent,
-    UploadImageComponent,
   ],
   exports: [
     MainComponent,
@@ -65,8 +61,6 @@ import { MainComponent } from './main.component';
     ModalView01Component,
     ModalView02Component,
     SafeHtmlPipe,
-    AdminComponent,
-    UploadImageComponent,
   ],
   imports: [
     CommonModule,

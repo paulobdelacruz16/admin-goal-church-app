@@ -1,0 +1,23 @@
+<div class="panel">
+  <div class="panel-header">
+    <p>Section1 - <a href="">Add New</a></p>
+  </div>
+    <table id="customers">
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>URL</th>
+        <th>Image</th>
+      </tr>
+      <tr
+        (click)="openModal(item)"
+        *ngFor="let item of section1?.data; index as id"
+        click
+      >
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.url }}</td>
+        <td>{{ item.image }}</td>
+      </tr>
+    </table>
+</div>

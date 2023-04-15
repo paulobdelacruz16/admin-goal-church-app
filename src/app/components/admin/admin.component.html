@@ -1,4 +1,4 @@
-<app-upload-image></app-upload-image>
+<!-- <app-upload-image></app-upload-image>
 
 
 <button (click)="deleteImage()">Delete Image</button>
@@ -21,4 +21,36 @@
       </tr>
     </table>
   </form>
+</div> -->
+
+<div class="admin-main">
+  <div class="container-fluid">
+    <div class="row content">
+      <div class="col-md-3 sidenav body-nav">
+        <div class="top-bar-side">
+          <h4><small>Admin</small></h4>
+        </div>
+        <img src="assets/images/find_user.png" alt="user image" />
+
+        <div
+          *ngFor="let item of this.navigation"
+          [ngClass]="{ active: item.id == selectedNavId, navigation: true }"
+          [routerLink]="[item.url]"
+          (click)="selectNavBar(item.id)"
+        >
+          <p>{{ item.name }}</p>
+        </div>
+      </div>
+
+      <div class="col body-container">
+        <div class="top-bar">
+          <h4><small>RECENT POSTS</small></h4>
+        </div>
+        <div class="sub-body">
+          <hr />
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

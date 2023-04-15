@@ -6,10 +6,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { ConfigService } from 'src/app/services/config.service';
+import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
+import { ModalView02Component  } from "../../partials/modal-view-02/modal-view02.component"
 
-class ImageSnippet {
-  constructor(public src: string, public file: File) {}
-}
 @Component({
   selector: 'app-upload-image',
   templateUrl: './upload-image.component.html',
@@ -19,11 +18,13 @@ class ImageSnippet {
 export class UploadImageComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private modalService: BsModalService,
+
   ) {
     this.createForm();
   }
-
+  modalRef?: BsModalRef;
   uploadFormGroup = new FormGroup({
     files: new FormControl(),
   });
@@ -33,13 +34,16 @@ export class UploadImageComponent implements OnInit {
   }
 
   onSubmitUpload() {
-    const formData = new FormData();
-    for (let i = 0; i < this.selectedFile.length; i++) {
-      formData.append('files', this.selectedFile[i], this.selectedFile[i].name);
+    console.log('this.uploadFormGroup', this.uploadFormGroup);
+    if(this.uploadFormGroup.status === "VALID"){
+      const formData = new FormData();
+      for (let i = 0; i < this.selectedFile.length; i++) {
+        formData.append('files', this.selectedFile[i], this.selectedFile[i].name);
+      }
+      this.configService.uploadImages(formData).subscribe((data: any) => {
+        console.log('success uploading image');
+      });
     }
-    this.configService.uploadImages(formData).subscribe((data: any) => {
-      console.log('success uploading image');
-    });
   }
 
   createForm() {
@@ -50,5 +54,19 @@ export class UploadImageComponent implements OnInit {
 
   processFile(event: any) {
     this.selectedFile = event.target.files;
+  }
+
+  viewFiles(){
+    this.configService.getAllImages().subscribe((data: any) => {
+      console.log('success', data);
+      const pageUrl = `/images/`;
+      const initialState: ModalOptions = {
+        initialState: {
+          apiImages: data,
+          pageUrl
+        }
+      };
+      this.modalRef = this.modalService.show(ModalView02Component, initialState);
+    });
   }
 }

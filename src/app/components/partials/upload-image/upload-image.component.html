@@ -1,18 +1,31 @@
 <div class="upload-image">
-  <div class="container">
-    <h1>File Upload</h1>
-    <form id="form" [formGroup]="uploadFormGroup" (ngSubmit)="onSubmitUpload()">
-      <div class="input-group">
-        <label for="files">Select files</label>
-        <input #imageInput
-        type="file"
-        accept="image/*"
-        id="files"
-        multiple
-        (change)="processFile($event)">
+  <div class="panel">
+    <div class="panel-header">
+      <p>Image Server</p>
+    </div>
+    <div class="container">
+      <form
+        id="form"
+        [formGroup]="uploadFormGroup"
+        (ngSubmit)="onSubmitUpload()"
+      >
+        <div class="input-group">
+          <label for="files">Select files</label>
+          <input
+            #imageInput
+            type="file"
+            accept="image/*"
+            id="files"
+            multiple
+            formControlName="files"
+            (change)="processFile($event)"
+          />
+        </div>
+        <!-- #bd0010 -->
+        <button class="submit-btn btn-color-green" type="submit">Upload</button>
+        <button class="submit-btn btn-color-blue" (click)="viewFiles()">View Files</button>
 
-      </div>
-      <button class="submit-btn" type="submit">Upload</button>
-    </form>
+      </form>
+    </div>
   </div>
 </div>

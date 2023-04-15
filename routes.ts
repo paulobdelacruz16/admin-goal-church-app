@@ -18,5 +18,8 @@ export class Routes{
         server.post('/api/uploadImage',  uploadImageController.uploadImages);
         server.delete('/api/deleteImage/:name',  imageController.deleteImage);
         server.post('/ng/api/loginCredential',  loginCredentialController.findLoginCredential);
+        server.post('/ng/api/getAllUsers',  loginCredentialController.findAllLoginCredential);
+
+        
     }
 }

@@ -7,7 +7,6 @@ import { EventsComponent } from '../../components/events/events.component';
 import { HomeComponent } from '../../components/home/home.component';
 import { NewsComponent } from '../../components/news/news.component';
 import { SermonsComponent } from '../../components/sermons/sermons.component';
-import { AdminComponent } from '../../components/admin/admin.component';
 
 const routes: Routes = [
   { path: '',  redirectTo: 'home', pathMatch: 'full'},
@@ -18,7 +17,6 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'donate', component: DonateComponent },
-  { path: 'admin', component: AdminComponent },
 ];
 
 @NgModule({

@@ -4,10 +4,10 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { ModalView02Component  } from "../partials/modal-view-02/modal-view02.component"
-import { ModalView01Component  } from "../partials/modal-view-01/modal-view01.component"
-import {Router} from "@angular/router"
+import { ModalView02Component  } from "../../partials/modal-view-02/modal-view02.component"
+import { ModalView01Component  } from "../../partials/modal-view-01/modal-view01.component"
 
+import {Router} from "@angular/router"
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import {
   FormBuilder,
@@ -17,13 +17,14 @@ import {
 } from '@angular/forms';
 import { ConfigService } from 'src/app/services/config.service';
 
+
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss'],
+  selector: 'app-admin-images',
+  templateUrl: './admin-images.component.html',
+  styleUrls: ['./admin-images.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class AdminComponent implements OnInit {
+export class AdminImagesComponent implements OnInit {
   modalRef?: BsModalRef;
   constructor(
     private modalService: BsModalService,
@@ -32,10 +33,6 @@ export class AdminComponent implements OnInit {
     private router: Router
   ) {
     this.createForm();
-    let isAuthenticated = sessionStorage.getItem("login");
-    if(!isAuthenticated){
-      this.router.navigate(['/login'])
-    }
   }
 
   myInterval = 150000000;
@@ -46,59 +43,31 @@ export class AdminComponent implements OnInit {
     image: new FormControl(),
     url: new FormControl(),
   });
-  navigation:any;
   itemListData1:any;
   section1:any;
   pageUrl:any;
-  selectedNavId:any;
+  navigation:any;
   ngOnInit(): void {
     console.log('homepage', window.location.host);
-    this.itemListData1 = {
-      title: 'Services',
-      description: 'Come, let us worship and bow down, Let us kneel before the Lord our Maker',
-      data: [
-      {
-        name: 'Worship Service',
-        description:
-          'Worship the LORD with gladness; come before him with joyful songs.',
-        image:
-          'https://drive.google.com/uc?id=1cOCMOSO2MxneXphQz-dX7SYxqHTvUbuY',
-        url: '#sampleurl-test01',
-      },
-      {
-        name: 'Prayer Meeting',
-        description:
-          'Devote yourselves to prayer, being watchful and thankful.',
-        image:
-          'https://drive.google.com/uc?id=1KwJcJ7Mu1I3TpMWkFkI_BlXutGGHLzzQ',
-        url: '#sampleurl-test02',
-      },
-      {
-        name: 'Helping Children',
-        description:
-          'Train up a child in the way he should go; even when he is old he will not depart from it.',
-        image:
-          'https://drive.google.com/uc?id=1rV865wuvjhn19TwaJdMHGQeUs-6i8GuS',
-        url: '#sampleurl-test03',
-      }],
-    };
 
     this.configService.getAllSection1().subscribe((data: any) => {
       console.log('success123', data);
       this.section1 = data
     });
     this.navigation = [{
-      name: 'Goal Church Data', url: "/admin", id: 1
+      name: 'Goal Church Data'
     },{
-      name: 'User', url: "/admin/user", id: 2
+      name: 'User'
     },{
-      name: 'Server Images', url: "/admin/serverimages", id: 3
+      name: 'Server Images'
     },
   ]
-  this.selectedNavId =  this.navigation?.[0].id;
-  console.log(' this.selectedNavId',  this.selectedNavId);
+    this.configService.getAllSection1().subscribe((data: any) => {
+      console.log('success123', data);
+      this.section1 = data
+    });
+    
   }
-
   openModal(item:any) {
     this.configService.getAllImages().subscribe((data: any) => {
       console.log('success', data);
@@ -145,7 +114,9 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  selectNavBar(id:any){
-    this.selectedNavId = id;
-  }
+
+
+
+
+
 }

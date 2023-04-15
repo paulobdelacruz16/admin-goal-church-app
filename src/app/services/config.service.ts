@@ -56,4 +56,9 @@ export class ConfigService {
     return this.http.post<any>('/ng/api/loginCredential', data)
   }
 
+  getAllUsers(data: any): Observable<any> {   
+    return this.http.get<any>(`/ng/api/getAllUsers`);
+  }
+
+
 }
