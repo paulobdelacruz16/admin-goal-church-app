@@ -17,9 +17,7 @@ export class Routes{
         server.delete('/api/section1/:id', section1Controller.deleteData);
         server.post('/api/uploadImage',  uploadImageController.uploadImages);
         server.delete('/api/deleteImage/:name',  imageController.deleteImage);
-        server.post('/ng/api/loginCredential',  loginCredentialController.findLoginCredential);
-        server.post('/ng/api/getAllUsers',  loginCredentialController.findAllLoginCredential);
-
-        
+        server.post('/ng/api/findByloginCredential',  loginCredentialController.findByloginCredential);
+        server.post('/ng/api/getAlloginCredential',  loginCredentialController.findAllLoginCredential);        
     }
 }

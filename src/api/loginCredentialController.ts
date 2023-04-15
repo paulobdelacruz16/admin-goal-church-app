@@ -3,8 +3,8 @@ import fetch from 'node-fetch';
 
 export class LoginCredentialController {
   
-  async findLoginCredential(req: any, res: any) {
-    var url = "http://localhost:3001/api/loginCredential"
+  async findByloginCredential(req: any, res: any) {
+    var url = "http://localhost:3001/api/findByloginCredential"
     var response = await fetch(url, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -18,7 +18,7 @@ export class LoginCredentialController {
   }
   
   async findAllLoginCredential(req: any, res: any) {
-    var url = "http://localhost:3001/api/section1"
+    var url = "http://localhost:3001/api/loginCredential"
     var response = await fetch(url, {
       method: 'GET',
       headers: {'Content-Type': 'application/json'},

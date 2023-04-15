@@ -52,10 +52,11 @@ export class LoginComponent implements OnInit {
   }
   onSubmit(){
     if(this.loginGroup.status === 'VALID'){
-
       this.configService.findLoginCredential(this.loginGroup.value).subscribe((data: any) => {
-        sessionStorage.setItem("login", 'true');
-        this.router.navigate(['/admin'])
+        if(data?.data.message.length !== 0){
+          sessionStorage.setItem("login", 'true');
+          this.router.navigate(['/admin'])
+        }
       });
     }
   }
