@@ -29,12 +29,12 @@ export class AdminUserComponent implements OnInit {
   ) {
   }
 
-  section1:any;
+  allcredential:any;
   pageUrl:any;
   ngOnInit(): void {
-    this.configService.getAllSection1().subscribe((data: any) => {
+    this.configService.getAlloginCredential().subscribe((data: any) => {
       console.log('success123', data);
-      this.section1 = data
+      this.allcredential = data
     });
     
   }

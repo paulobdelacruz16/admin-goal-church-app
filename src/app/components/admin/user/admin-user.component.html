@@ -1,19 +1,22 @@
-<div class="panel">
-  <div class="panel-header">
-    <p>Section1 - <a href="">Add New</a></p>
+<div class="admin-user">
+  <div class="panel">
+    <div class="panel-header">
+      <p>Users- <a href="">Add New</a></p>
+    </div>
+    <table id="customers">
+      <tr>
+        <th>username</th>
+        <th>password</th>
+      </tr>
+      <tr
+        (click)="openModal(item)"
+        *ngFor="let item of allcredential?.data; index as id"
+        click
+      >
+        <td>{{ item.username }}</td>
+        <td>{{ item.password }}</td>
+      </tr>
+    </table>
   </div>
-  <table id="customers">
-    <tr>
-      <th>username</th>
-      <th>password</th>
-    </tr>
-    <tr
-      (click)="openModal(item)"
-      *ngFor="let item of section1?.data; index as id"
-      click
-    >
-      <td>{{ item.username }}</td>
-      <td>{{ item.password }}</td>
-    </tr>
-  </table>
 </div>
+
