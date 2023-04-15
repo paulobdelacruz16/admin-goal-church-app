@@ -52,41 +52,6 @@ export class AdminComponent implements OnInit {
   pageUrl:any;
   selectedNavId:any;
   ngOnInit(): void {
-    console.log('homepage', window.location.host);
-    this.itemListData1 = {
-      title: 'Services',
-      description: 'Come, let us worship and bow down, Let us kneel before the Lord our Maker',
-      data: [
-      {
-        name: 'Worship Service',
-        description:
-          'Worship the LORD with gladness; come before him with joyful songs.',
-        image:
-          'https://drive.google.com/uc?id=1cOCMOSO2MxneXphQz-dX7SYxqHTvUbuY',
-        url: '#sampleurl-test01',
-      },
-      {
-        name: 'Prayer Meeting',
-        description:
-          'Devote yourselves to prayer, being watchful and thankful.',
-        image:
-          'https://drive.google.com/uc?id=1KwJcJ7Mu1I3TpMWkFkI_BlXutGGHLzzQ',
-        url: '#sampleurl-test02',
-      },
-      {
-        name: 'Helping Children',
-        description:
-          'Train up a child in the way he should go; even when he is old he will not depart from it.',
-        image:
-          'https://drive.google.com/uc?id=1rV865wuvjhn19TwaJdMHGQeUs-6i8GuS',
-        url: '#sampleurl-test03',
-      }],
-    };
-
-    this.configService.getAllSection1().subscribe((data: any) => {
-      console.log('success123', data);
-      this.section1 = data
-    });
     this.navigation = [{
       name: 'Goal Church Data', url: "/admin", id: 1
     },{
