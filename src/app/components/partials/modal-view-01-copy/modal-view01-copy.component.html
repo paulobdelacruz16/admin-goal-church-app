@@ -1,0 +1,124 @@
+<div class="modal-header">
+  <div>
+    <button (click)="savechanges()">Save123</button>
+    <button (click)="deletechanges()">Delete</button>
+  </div>
+  <button
+    type="button"
+    class="btn-close close pull-right"
+    aria-label="Close"
+    (click)="modalRef.hide()"
+  >
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="group-01">
+    <form [formGroup]="group1" (ngSubmit)="onSubmit()" novalidate>
+      <div class="container">
+        <div class="row justify-content-center" *ngFor="let item of dataModel; index as id">
+          <div class="col-12">
+            <label class="label-input" for="name">{{item.label}} </label>
+            <input
+              class="input"
+              type="text"
+              id="{{item.name}}"
+              name="{{item.name}}"
+              formControlName="{{item.name}}"
+              readonly="{{item.type === 'image'}}"
+            />
+          <button *ngIf="item.type === 'image'" (click)="childModal.show()">Select Image</button>
+          </div>
+          <div class="col-12">
+            <div
+              *ngIf="
+                group1.controls[item.name].errors &&
+                (group1.controls[item.name].dirty || group1.controls[item.name].touched)
+              "
+            >
+              <div *ngIf="group1.controls[item.name].errors['required']">
+                This Field is required
+              </div>
+              <div *ngIf="group1.controls[item.name].errors['minlength']">
+                This Field min Length is 10
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="row justify-content-center">
+          <div class="col-12">
+            <label class="label-input" for="name"
+              >Image: {{ imageLabel }}</label
+            >
+            <input
+              class="input"
+              type="text"
+              id="image"
+              name="image"
+              formControlName="image"
+              readonly
+            />
+            <button (click)="childModal.show()">Select Image</button>
+          </div>
+          <div class="col-12">
+            <div
+              *ngIf="
+                group1.controls.image.errors &&
+                (group1.controls.image.dirty || group1.controls.image.touched)
+              "
+            >
+              <div *ngIf="group1.controls.image.errors['required']">
+                This Field is required
+              </div>
+              <div *ngIf="group1.controls.image.errors['minlength']">
+                This Field min Length is 10
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </form>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  bsModal
+  #childModal="bs-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="dialog-nested-name2"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-nested-name2" class="modal-title pull-left">
+          Upload Image
+        </h4>
+        <button
+          type="button"
+          class="btn-close close pull-right"
+          aria-label="Close"
+          (click)="childModal.hide()"
+        >
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body row">
+          <div
+            class="animate-box col-md-3"
+            *ngFor="let item of apiImages.data; index as id"
+          >
+            <div class="services">
+              <a (click)="selectImage(item)" class="img-holder" *ngIf="item"
+                ><img
+                  class="img-responsive"
+                  [src]="pageUrl + item"
+                  alt="{{ item }}"
+              /></a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

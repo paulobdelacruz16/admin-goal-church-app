@@ -11,8 +11,10 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  Validators,
 } from '@angular/forms';
 import { ConfigService } from 'src/app/services/config.service';
+import { ModalView01CopyComponent } from '../../partials/modal-view-01-copy/modal-view01-copy.component';
 
 
 @Component({
@@ -26,31 +28,52 @@ export class AdminUserComponent implements OnInit {
   constructor(
     private modalService: BsModalService,
     private configService: ConfigService,
+    private formBuilder: FormBuilder,
+
   ) {
   }
 
   allcredential:any;
   pageUrl:any;
+  myFormBuilder:any;
   ngOnInit(): void {
     this.configService.getAlloginCredential().subscribe((data: any) => {
       console.log('success123', data);
       this.allcredential = data
     });
-    
+
+  this.myFormBuilder = this.formBuilder.group({
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      password: ['', [Validators.required, Validators.minLength(3)]],
+    });
   }
+  
   openModal(item:any) {
     this.configService.getAllImages().subscribe((data: any) => {
       console.log('success', data);
+      const dataModel = [
+        { label: 'username', type: 'text', name: 'username' },
+        { label: 'password', type: 'text', name: 'password' },
+      ];
+      const requestForm = {
+        'urlUpdate': 'api/putSection1',
+        'urlDelete': 'api/putSection1',
+      }
       const pageUrl = `/images/`;
       const initialState: ModalOptions = {
         initialState: {
           selectedMainData: item,
           apiImages: data,
-          pageUrl
+          myFormBuilder: this.myFormBuilder,
+          pageUrl,
+          dataModel,
+          requestForm
         }
       };
       this.modalRef = this.modalService.show(ModalView01Component, initialState);
     });
+
+
   }
 
 }

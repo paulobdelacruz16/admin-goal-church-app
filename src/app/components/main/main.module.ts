@@ -17,6 +17,8 @@ import { BoxListVideoComponent } from '../../components/partials/box-list-video/
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalView01Component } from '../../components/partials/modal-view-01/modal-view01.component';
+import { ModalView01CopyComponent } from '../../components/partials/modal-view-01-copy/modal-view01-copy.component';
+
 import { AboutComponent } from '../../components/about/about.component';
 import { SafeHtmlPipe } from '../../pipe/safe-html.pipe';
 import { ModalView02Component } from '../../components/partials/modal-view-02/modal-view02.component';
@@ -42,6 +44,7 @@ import { MainComponent } from './main.component';
     ModalView01Component,
     ModalView02Component,
     SafeHtmlPipe,
+    ModalView01CopyComponent,
   ],
   exports: [
     MainComponent,
@@ -61,6 +64,7 @@ import { MainComponent } from './main.component';
     ModalView01Component,
     ModalView02Component,
     SafeHtmlPipe,
+    ModalView01CopyComponent,
   ],
   imports: [
     CommonModule,

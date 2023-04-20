@@ -84,7 +84,7 @@ export class ModalView01Component implements OnInit {
   savechanges(){
     if(this.group1.status === 'VALID'){
       console.log('this.group1', this.group1.value);
-      console.log('submitted');
+      console.log('submitted123');
       this.configService.putSection1({body: this.group1.value, id: this.selectedMainData._id}).subscribe((data: any) => {
         console.log('success', data);
         this.modalRef?.hide();

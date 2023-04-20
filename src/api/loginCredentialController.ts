@@ -18,7 +18,6 @@ export class LoginCredentialController {
   }
   
   async findAllLoginCredential(req: any, res: any) {
-    console.log('eey');
     var url = "http://localhost:3001/api/loginCredential"
     var response = await fetch(url, {
       method: 'GET',

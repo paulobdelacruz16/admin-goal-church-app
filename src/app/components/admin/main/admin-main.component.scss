@@ -3,6 +3,7 @@
   #customers th {
     border: 1px solid #ddd;
     padding: 8px;
+    word-break: break-all;
   }
 
   #customers tr:nth-child(even) {

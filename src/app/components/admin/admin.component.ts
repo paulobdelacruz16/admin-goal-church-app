@@ -4,9 +4,9 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { ModalView02Component  } from "../partials/modal-view-02/modal-view02.component"
-import { ModalView01Component  } from "../partials/modal-view-01/modal-view01.component"
-import {Router} from "@angular/router"
+import { ModalView02Component } from '../partials/modal-view-02/modal-view02.component';
+import { ModalView01Component } from '../partials/modal-view-01/modal-view01.component';
+import { Router } from '@angular/router';
 
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import {
@@ -16,6 +16,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ConfigService } from 'src/app/services/config.service';
+import { ModalView01CopyComponent } from '../partials/modal-view-01-copy/modal-view01-copy.component';
 
 @Component({
   selector: 'app-admin',
@@ -32,9 +33,9 @@ export class AdminComponent implements OnInit {
     private router: Router
   ) {
     this.createForm();
-    let isAuthenticated = sessionStorage.getItem("login");
-    if(!isAuthenticated){
-      this.router.navigate(['/login'])
+    let isAuthenticated = sessionStorage.getItem('login');
+    if (!isAuthenticated) {
+      this.router.navigate(['/login']);
     }
   }
 
@@ -46,36 +47,61 @@ export class AdminComponent implements OnInit {
     image: new FormControl(),
     url: new FormControl(),
   });
-  navigation:any;
-  itemListData1:any;
-  section1:any;
-  pageUrl:any;
-  selectedNavId:any;
+  navigation: any;
+  itemListData1: any;
+  section1: any;
+  pageUrl: any;
+  selectedNavId: any;
   ngOnInit(): void {
-    this.navigation = [{
-      name: 'Goal Church Data', url: "/admin", id: 1
-    },{
-      name: 'User', url: "/admin/user", id: 2
-    },{
-      name: 'Server Images', url: "/admin/serverimages", id: 3
-    },
-  ]
-  this.selectedNavId =  this.navigation?.[0].id;
-  console.log(' this.selectedNavId',  this.selectedNavId);
+    this.navigation = [
+      {
+        name: 'Goal Church Data',
+        url: '/admin',
+        id: 1,
+      },
+      {
+        name: 'User',
+        url: '/admin/user',
+        id: 2,
+      },
+      {
+        name: 'Server Images',
+        url: '/admin/serverimages',
+        id: 3,
+      },
+    ];
+    this.selectedNavId = this.navigation?.[0].id;
+    console.log(' this.selectedNavId', this.selectedNavId);
   }
 
-  openModal(item:any) {
+  openModal(item: any) {
     this.configService.getAllImages().subscribe((data: any) => {
       console.log('success', data);
       const pageUrl = `/images/`;
+      const dataModel = [
+        { label: 'Title', type: 'text', name: 'name' },
+        { label: 'Description', type: 'text', name: 'description' },
+        { label: 'Image', type: 'image', name: 'image' },
+        { label: 'Url', type: 'text', name: 'url' },
+      ];
+      const requestForm = {
+        'urlUpdate': 'api/putSection1',
+        'urlDelete': 'api/putSection1',
+      }
+
       const initialState: ModalOptions = {
         initialState: {
           selectedMainData: item,
           apiImages: data,
-          pageUrl
-        }
+          pageUrl,
+          dataModel,
+          requestForm
+        },
       };
-      this.modalRef = this.modalService.show(ModalView01Component, initialState);
+      this.modalRef = this.modalService.show(
+        ModalView01CopyComponent,
+        initialState
+      );
     });
   }
 
@@ -87,30 +113,33 @@ export class AdminComponent implements OnInit {
       url: ['', Validators.required],
     });
   }
-  onSubmit(){
+  onSubmit() {
     console.log('this.group1', this.group1);
     console.log('submitted');
   }
 
-  selectImage(){
+  selectImage() {
     this.modalRef?.hide();
   }
 
-  deleteImage(){
+  deleteImage() {
     this.configService.getAllImages().subscribe((data: any) => {
       console.log('success', data);
       const pageUrl = `/images/`;
       const initialState: ModalOptions = {
         initialState: {
           apiImages: data,
-          pageUrl
-        }
+          pageUrl,
+        },
       };
-      this.modalRef = this.modalService.show(ModalView02Component, initialState);
+      this.modalRef = this.modalService.show(
+        ModalView02Component,
+        initialState
+      );
     });
   }
 
-  selectNavBar(id:any){
+  selectNavBar(id: any) {
     this.selectedNavId = id;
   }
 }
