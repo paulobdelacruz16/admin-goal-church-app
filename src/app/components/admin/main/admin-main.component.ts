@@ -6,7 +6,6 @@ import {
 import { ModalView01Component  } from "../../partials/modal-view-01/modal-view01.component"
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { ConfigService } from 'src/app/services/config.service';
-import { ModalView01CopyComponent } from '../../partials/modal-view-01-copy/modal-view01-copy.component';
 import { FormBuilder, Validators } from '@angular/forms';
 
 
@@ -63,7 +62,37 @@ export class AdminMainComponent implements OnInit {
           requestForm
         }
       };
-      this.modalRef = this.modalService.show(ModalView01CopyComponent, initialState);
+      this.modalRef = this.modalService.show(ModalView01Component, initialState);
+    });
+  }
+
+
+  addNewData(){
+    this.configService.getAllImages().subscribe((data: any) => {
+      const pageUrl = `/images/`;
+      const dataModel = [
+        { label: 'Title', type: 'text', name: 'name' },
+        { label: 'Description', type: 'text', name: 'description' },
+        { label: 'Image', type: 'image', name: 'image' },
+        { label: 'Url', type: 'text', name: 'url' },
+      ];
+      const requestForm = {
+        'urlUpdate': 'api/section1',
+        'urlDelete': 'api/section1',
+      }
+      const newData = true;
+      const initialState: ModalOptions = {
+        initialState: {
+          selectedMainData: null,
+          apiImages: data,
+          myFormBuilder: this.myFormBuilder,
+          pageUrl,
+          dataModel,
+          requestForm,
+          newData
+        }
+      };
+      this.modalRef = this.modalService.show(ModalView01Component, initialState);
     });
   }
 }

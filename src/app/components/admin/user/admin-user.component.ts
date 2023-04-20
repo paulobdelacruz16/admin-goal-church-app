@@ -14,7 +14,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { ConfigService } from 'src/app/services/config.service';
-import { ModalView01CopyComponent } from '../../partials/modal-view-01-copy/modal-view01-copy.component';
 
 
 @Component({
@@ -59,6 +58,7 @@ export class AdminUserComponent implements OnInit {
         'urlUpdate': 'api/putSection1',
         'urlDelete': 'api/putSection1',
       }
+      const actions = true;
       const pageUrl = `/images/`;
       const initialState: ModalOptions = {
         initialState: {
@@ -67,7 +67,8 @@ export class AdminUserComponent implements OnInit {
           myFormBuilder: this.myFormBuilder,
           pageUrl,
           dataModel,
-          requestForm
+          requestForm,
+          actions
         }
       };
       this.modalRef = this.modalService.show(ModalView01Component, initialState);

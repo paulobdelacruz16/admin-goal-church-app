@@ -4,15 +4,11 @@ import { UploadImageController } from './src/api/uploadImageController'
 import { LoginCredentialController } from './src/api/loginCredentialController'
 import { DynmamicApiController } from './src/api/dynamicApiController'
 
-
 const imageController = new ImageController();
 const section1Controller = new Section1Controller();
 const uploadImageController = new UploadImageController();
 const loginCredentialController = new LoginCredentialController();
 const dynmamicApiController = new DynmamicApiController();
-
-
-
 
 export class Routes{
     public apiRoutes(server:any): void{
@@ -27,5 +23,7 @@ export class Routes{
         server.get('/ng/api/getAlloginCredential',  loginCredentialController.findAllLoginCredential);
         server.post('/ng/api/dynamicApi/update',  dynmamicApiController.updateData);
         server.post('/ng/api/dynamicApi/delete',  dynmamicApiController.deleteData);
+        server.post('/ng/api/dynamicApi/add',  dynmamicApiController.postData);
+
     }
 }

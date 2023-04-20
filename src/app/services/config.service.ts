@@ -59,13 +59,15 @@ export class ConfigService {
     return this.http.get<any>(`/ng/api/getAlloginCredential`);
   }
 
+  dynamicAddApi(data: any): Observable<any> {
+    return this.http.post<any>('/ng/api/dynamicApi/add', data);
+  }
+  
   dynamicUpdateApi(data: any): Observable<any> {
     return this.http.post<any>('/ng/api/dynamicApi/update', data);
   }
 
   dynamicDeleteApi(data: any): Observable<any> {
-    return this.http.post<any>('/ng/api/dynamicApi/update', data);
+    return this.http.post<any>('/ng/api/dynamicApi/delete', data);
   }
-
-  
 }

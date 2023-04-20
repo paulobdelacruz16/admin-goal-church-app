@@ -1,3 +1,4 @@
+import { TypeofExpr } from '@angular/compiler';
 import {
   Component,
   TemplateRef,
@@ -5,6 +6,7 @@ import {
   ViewEncapsulation,
   Input,
   ViewChild,
+  Injector,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -27,83 +29,104 @@ export class ModalView01Component implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public modalRef: BsModalRef,
-    private configService: ConfigService
-
+    private configService: ConfigService,
+    private injector: Injector
   ) {
-    this.createForm();
+    
   }
 
   myInterval = 150000000;
-  imageLabel = "Empty";
+  imageLabel = 'Empty';
 
-  group1 = new FormGroup({
-    name: new FormControl(),
-    description: new FormControl(),
-    image: new FormControl(),
-    url: new FormControl(),
-  });
-  itemListData1:any;
+
+  group1: any;
+
+  itemListData1: any;
   selectedMainData: any;
-  apiImages:any;
-  hostname:any;
-  pageUrl:any;
+  apiImages: any;
+  hostname: any;
+  pageUrl: any;
+  myFormBuilder: any;
+  dataModel:any
+  requestForm:any;
+  newData:any;
+  actions:any;
   ngOnInit(): void {
-    console.log('selectedDataMain', this.selectedMainData);
-    // console.log('apiImages', this.apiImages);
-    // console.log('document', window.location.hostname);
     this.modalRef?.setClass('modal-lg');
-    this.setInitialValue();
+    this.createForm();
   }
+  createForm() {
+    console.log('myFormBuilder',this.myFormBuilder);
+    console.log('selectedDataMain', this.selectedMainData);
+    this.group1 = this.myFormBuilder;
+    this.group1.reset();
 
-  setInitialValue(){
-    if(this.selectedMainData){
-      this.group1.controls['name'].setValue(this.selectedMainData.name);
-      this.group1.controls['description'].setValue(this.selectedMainData.description);
-      this.group1.controls['image'].setValue(this.selectedMainData.image);
-      this.group1.controls['url'].setValue(this.selectedMainData.url);
+
+    if (this.selectedMainData) {
+      for (var key in this.selectedMainData) {
+        if (this.selectedMainData.hasOwnProperty(key)) {
+          if(key === '_id' || key === '__v'){
+          }else{
+            this.group1.controls[key].setValue(this.selectedMainData[key]);
+          }
+        }
+      }
     }
   }
 
-  createForm() {
-    this.group1 = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(10)]],
-      description: ['', [Validators.required, Validators.minLength(10)]],
-      image: ['', [Validators.required]],
-      url: ['', Validators.required],
-    });
-  }
-  onSubmit(){
+  onSubmit() {
     console.log('this.group1', this.group1);
     console.log('submitted');
   }
 
-  closeImage(){
-    
-  }
+  closeImage() {}
 
-  savechanges(){
-    if(this.group1.status === 'VALID'){
-      console.log('this.group1', this.group1.value);
-      console.log('submitted123');
-      this.configService.putSection1({body: this.group1.value, id: this.selectedMainData._id}).subscribe((data: any) => {
+  savechanges() {
+    if (this.group1.status === 'VALID') {
+      console.log('submitted');
+      this.configService.dynamicUpdateApi({ 
+        body: this.group1.value,
+        url: this.requestForm.urlUpdate,
+        id: this.selectedMainData._id
+      })
+      .subscribe((data: any) => {
         console.log('success', data);
         this.modalRef?.hide();
       });
-    };
+    }
   }
 
-  deletechanges(){
+  deletechanges() {
     console.log('delete');
-    this.configService.deleteSection1({id: this.selectedMainData._id}).subscribe((data: any) => {
+    this.configService.dynamicDeleteApi({ 
+      url: this.requestForm.urlDelete,
+      id: this.selectedMainData._id
+    })
+    .subscribe((data: any) => {
       console.log('success', data);
       this.modalRef?.hide();
     });
-  };
+  }
 
-  selectImage(item:any){
+  selectImage(item: any) {
     console.log('image selected', item);
+    console.log('image selected222', this.selectedMainData);
     this.childModal?.hide();
-    this.selectedMainData.image = item;
     this.group1.controls['image'].setValue(item);
+  }
+  
+  addNew(){
+    if (this.group1.status === 'VALID') {
+      console.log('this.group1', this.group1);
+
+      this.configService.dynamicAddApi({ 
+        body: this.group1.value,
+        url: this.requestForm.urlUpdate
+      })
+      .subscribe((data: any) => {
+        console.log('success', data);
+        this.modalRef?.hide();
+      });
+    }
   }
 }

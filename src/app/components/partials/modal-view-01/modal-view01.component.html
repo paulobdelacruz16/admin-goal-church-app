@@ -1,8 +1,15 @@
 <div class="modal-header">
   <div>
-    <button (click)="savechanges()">Save</button>
-    <button (click)="deletechanges()">Delete</button>
+    <ng-container *ngIf="!newData">
+      <button (click)="savechanges()" [disabled]="actions">Save</button>
+      <button (click)="deletechanges()" [disabled]="actions">Delete</button>
+    </ng-container>
+    <ng-container *ngIf="newData">
+      <button (click)="addNew()"  [disabled]="actions">Save</button>
+    </ng-container>
   </div>
+
+
   <button
     type="button"
     class="btn-close close pull-right"
@@ -16,89 +23,36 @@
   <div class="group-01">
     <form [formGroup]="group1" (ngSubmit)="onSubmit()" novalidate>
       <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" *ngFor="let item of dataModel; index as id">
           <div class="col-12">
-            <label class="label-input" for="name">Title </label>
+            <label class="label-input" for="name">{{item.label}} </label>
             <input
               class="input"
               type="text"
-              id="name"
-              name="name"
-              formControlName="name"
+              id="{{item.name}}"
+              name="{{item.name}}"
+              formControlName="{{item.name}}"
+              [readonly]="item.type === 'image'"
             />
+          <button *ngIf="item.type === 'image'" (click)="childModal.show()">Select Image</button>
           </div>
           <div class="col-12">
             <div
               *ngIf="
-                group1.controls.name.errors &&
-                (group1.controls.name.dirty || group1.controls.name.touched)
+                group1.controls[item.name].errors &&
+                (group1.controls[item.name].dirty || group1.controls[item.name].touched)
               "
             >
-              <div *ngIf="group1.controls.name.errors['required']">
+              <div *ngIf="group1.controls[item.name].errors['required']">
                 This Field is required
               </div>
-              <div *ngIf="group1.controls.name.errors['minlength']">
+              <div *ngIf="group1.controls[item.name].errors['minlength']">
                 This Field min Length is 10
               </div>
             </div>
           </div>
         </div>
-        <div class="row justify-content-center">
-          <div class="col-12">
-            <label class="label-input" for="name">Description </label>
-            <input
-              class="input"
-              type="text"
-              id="description"
-              name="description"
-              formControlName="description"
-            />
-          </div>
-          <div class="col-12">
-            <div
-              *ngIf="
-                group1.controls.description.errors &&
-                (group1.controls.description.dirty ||
-                  group1.controls.description.touched)
-              "
-            >
-              <div *ngIf="group1.controls.description.errors['required']">
-                This Field is required
-              </div>
-              <div *ngIf="group1.controls.description.errors['minlength']">
-                This Field min Length is 10
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-12">
-            <label class="label-input" for="name">URL </label>
-            <input
-              class="input"
-              type="text"
-              id="url"
-              name="url"
-              formControlName="url"
-            />
-          </div>
-          <div class="col-12">
-            <div
-              *ngIf="
-                group1.controls.url.errors &&
-                (group1.controls.url.dirty || group1.controls.url.touched)
-              "
-            >
-              <div *ngIf="group1.controls.url.errors['required']">
-                This Field is required
-              </div>
-              <div *ngIf="group1.controls.url.errors['minlength']">
-                This Field min Length is 10
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-center">
+        <!-- <div class="row justify-content-center">
           <div class="col-12">
             <label class="label-input" for="name"
               >Image: {{ imageLabel }}</label
@@ -128,8 +82,7 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="row justify-content-center"></div>
+        </div> -->
       </div>
     </form>
   </div>

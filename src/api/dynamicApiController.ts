@@ -17,11 +17,11 @@ export class DynmamicApiController {
   }
 
   async postData(req: any, res: any) {
-    var url = "http://localhost:3001/api/section1"
+    var url = `http://localhost:3001/${req.body.url}`
     var response = await fetch(url, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(req.body),
+      body: JSON.stringify(req.body.body),
     }).then((response: any) => {
       return response;
     }).catch((err: any) => {console.log(err);});
@@ -33,8 +33,6 @@ export class DynmamicApiController {
   async updateData(req: any, res: any) {
     console.log('welcome to update data');
     var url = `http://localhost:3001/${req.body.url}/${req.body.id}`
-    console.log('url', url);
-    console.log('body', req.body.body)
     var response = await fetch(url, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
