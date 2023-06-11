@@ -21,6 +21,7 @@ export class Routes{
         server.delete('/api/deleteImage/:name',  imageController.deleteImage);
         server.post('/ng/api/findByloginCredential',  loginCredentialController.findByloginCredential);
         server.get('/ng/api/getAlloginCredential',  loginCredentialController.findAllLoginCredential);
+        server.get('/ng/api/dynamicApi/get/:url',  dynmamicApiController.getAllData);
         server.post('/ng/api/dynamicApi/update',  dynmamicApiController.updateData);
         server.post('/ng/api/dynamicApi/delete',  dynmamicApiController.deleteData);
         server.post('/ng/api/dynamicApi/add',  dynmamicApiController.postData);

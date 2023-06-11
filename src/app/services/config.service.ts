@@ -31,6 +31,21 @@ export class ConfigService {
     return this.http.get<any>(`api/section1`);
   }
 
+  getAllSection(data:any): Observable<any> {
+  return this.http.get<any>(`/ng/api/dynamicApi/get/:${data.url}`);
+  }
+
+  getAllSection2(): Observable<any> {
+    return this.http.get<any>(`api/section2`);
+  }
+
+  getAllSection3(): Observable<any> {
+    return this.http.get<any>(`api/section3`);
+  }
+  getAllSection4(): Observable<any> {
+    return this.http.get<any>(`api/section4`);
+  }
+
   postSection1(data: any): Observable<any> {
     return this.http.post<any>('api/section1', data);
   }

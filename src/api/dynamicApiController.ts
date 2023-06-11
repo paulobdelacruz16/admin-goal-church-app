@@ -4,7 +4,8 @@ import fetch from 'node-fetch';
 export class DynmamicApiController {
   
    async getAllData(req: any, res: any) {
-    var url = "http://localhost:3001/api/section1"
+    const param = req.params.url.replace(/^./, "");
+    var url = `http://localhost:3001/api/${param}`
     var response = await fetch(url, {
       method: 'GET',
       headers: {'Content-Type': 'application/json'},

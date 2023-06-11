@@ -61,7 +61,6 @@ export class ModalView01Component implements OnInit {
     this.group1 = this.myFormBuilder;
     this.group1.reset();
 
-
     if (this.selectedMainData) {
       for (var key in this.selectedMainData) {
         if (this.selectedMainData.hasOwnProperty(key)) {

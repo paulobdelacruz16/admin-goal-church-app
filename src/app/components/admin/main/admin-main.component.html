@@ -1,7 +1,7 @@
 <div class="admin-main">
   <div class="panel">
     <div class="panel-header">
-      <p>Section1 - <a (click)="addNewData()">Add New</a></p>
+      <p>Section1 - <a (click)="addNewData('Section1')">Add New</a></p>
     </div>
       <table id="customers">
         <tr>
@@ -11,7 +11,7 @@
           <th>Image</th>
         </tr>
         <tr
-          (click)="openModal(item)"
+          (click)="openModal(item, 'section1')"
           *ngFor="let item of section1?.data; index as id"
           click
         >
@@ -22,5 +22,24 @@
         </tr>
       </table>
   </div>
-  
+  <div class="panel">
+    <div class="panel-header">
+      <p>Section2 - <a (click)="addNewData('section2')">Add New</a></p>
+    </div>
+      <table id="customers">
+        <tr>
+          <th>Description</th>
+          <th>Image</th>
+          <th>URL</th>
+        </tr>
+        <tr
+          (click)="openModal(item, 'section2')"
+          *ngFor="let item of section2?.data; index as id"
+        >
+          <td>{{ item.description }}</td>
+          <td>{{ item.image }}</td>
+          <td>{{ item.url }}</td>
+        </tr>
+      </table>
+  </div>
 </div>
