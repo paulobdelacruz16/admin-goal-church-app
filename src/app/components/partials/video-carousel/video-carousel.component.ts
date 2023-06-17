@@ -14,9 +14,12 @@ export class VideoCarouselComponent implements OnInit {
   constructor(private _sanitizer: DomSanitizer,private modalService: BsModalService) {}
   safeURL: any;
   selectedVideoURL:any;
+  pageUrl:any;
 
   @Input() itemListData:any;
   ngOnInit(): void {
+    this.pageUrl = "/images/"
+
   }
 
   openModal(template: TemplateRef<any>, item:any) {

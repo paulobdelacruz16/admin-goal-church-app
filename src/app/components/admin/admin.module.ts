@@ -8,6 +8,7 @@ import { UploadImageComponent } from '../../components/partials/upload-image/upl
 import { AdminMainComponent } from './main/admin-main.component';
 import { AdminUserComponent } from './user/admin-user.component';
 import { AdminImagesComponent } from './admin-images/admin-images.component';
+import { AdminContentComponent } from './content/admin-content.component';
 
 
 @NgModule({
@@ -16,14 +17,16 @@ import { AdminImagesComponent } from './admin-images/admin-images.component';
     UploadImageComponent,
     AdminMainComponent,
     AdminUserComponent,
-    AdminImagesComponent
+    AdminImagesComponent,
+    AdminContentComponent
   ],
   exports: [
     AdminComponent,
     UploadImageComponent,
     AdminMainComponent,
     AdminUserComponent,
-    AdminImagesComponent
+    AdminImagesComponent,
+    AdminContentComponent
   ],
   imports: [
     CommonModule,

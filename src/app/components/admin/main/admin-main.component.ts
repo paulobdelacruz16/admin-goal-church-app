@@ -54,8 +54,8 @@ export class AdminMainComponent implements OnInit {
       url: ['', [Validators.required]],
     });
   }
+  
   openModal(item: any, data: any) {
-    this.buildModal(data);
     this.configService.getAllImages().subscribe((data: any) => {
       const initialState: ModalOptions = {
         initialState: {
@@ -67,15 +67,11 @@ export class AdminMainComponent implements OnInit {
           requestForm: this.requestForm,
         },
       };
-      this.modalRef = this.modalService.show(
-        ModalView01Component,
-        initialState
-      );
+      this.buildModal(data, initialState);
     });
   }
 
   addNewData(data: any) {
-    this.buildModal(data);
     this.configService.getAllImages().subscribe((dataImages: any) => {
       const initialState: ModalOptions = {
         initialState: {
@@ -88,14 +84,11 @@ export class AdminMainComponent implements OnInit {
           newData: this.newData,
         },
       };
-      this.modalRef = this.modalService.show(
-        ModalView01Component,
-        initialState
-      );
+      this.buildModal(data, initialState);
     });
   }
 
-  buildModal(data: any) {
+  buildModal(data: any, initialState:any) {
     if (data === 'section1') {
       this.selectedformBuilder = this.myFormBuilder;
       this.dataModel = [
@@ -119,5 +112,11 @@ export class AdminMainComponent implements OnInit {
     };
     this.newData = true;
     this.pageUrl = `/images/`;
+
+    this.modalRef = this.modalService.show(
+      ModalView01Component,
+      initialState
+    );
+
   }
 }

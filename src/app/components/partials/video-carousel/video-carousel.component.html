@@ -3,7 +3,7 @@
     <slide *ngFor="let item of itemListData">
       <div class="banner-image">
         <img
-          [src]="item.image"
+          [src]="pageUrl + item.image"
           alt="first slide"
           style="display: block; width: 100%"
         />
