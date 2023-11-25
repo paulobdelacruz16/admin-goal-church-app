@@ -1,40 +1,52 @@
-
 <div class="admin-user">
-  <form [formGroup]="myFormBuilder" (ngSubmit)="onSubmit()" novalidate>
+  <button class="submit-btn" (click)="onSubmit()">Save</button>
+  <form [formGroup]="myMainFormBuilder" (ngSubmit)="onSubmit()" novalidate>
     <div class="container">
       <div
         class="row justify-content-center"
-        *ngFor="let item of this.dataModel; index as id"
+        *ngFor="let section of this.uiDataModel | keyvalue"
+        class="section-group" formGroupName="{{section?.key}}"
       >
-        <ng-container *ngIf="isArray(item.value)">
-          <label class="label-input" for="name">{{ item.label }} </label>
-          <div *ngFor="let item2 of item.value; index as id" class="div-spacer">
-            <div class="col-12" formArrayName="card">
-              <div *ngFor="let item3 of item2 | keyvalue; index as id2">
-                <div *ngIf="item3.key !== '_id'" [formGroupName]="id">
-                  <label class="label-input" for="name">{{ item3.key }} </label>
-                  <input
-                    class="input"
-                    type="text"
-                    id="{{ item3.key }}"
-                    name="{{ item3.key }}"
-                    formControlName="{{ item3.key }}"
-                  />
+        <div *ngFor="let item of section?.value">
+          <ng-container *ngIf="item.type == 'array-text'">
+            <div class="container-array-text">
+              <label class="label-input" for="name">{{ item.label }} </label>
+              <div
+                *ngFor="let item2 of item.value; index as id"
+                class="div-spacer"
+              >
+                <div class="col-12" formArrayName="card">
+                  <div *ngFor="let item3 of item2 | keyvalue; index as id2">
+                    <div *ngIf="item3.key !== '_id'" [formGroupName]="id">
+                      <label class="label-input" for="name"
+                        >{{ item3.key }}
+                      </label>
+                      <input
+                        class="input admin-content-input"
+                        type="text"
+                        id="{{ item3.key }}"
+                        name="{{ item3.key }}"
+                        formControlName="{{ item3.key }}"
+                      />
+                    </div>
+                  </div>
                 </div>
-  
               </div>
             </div>
-          </div>
-        </ng-container>
-  
-        <ng-container *ngIf="!isArray(item.value)">
-          <div class="col-12">
-            <label class="label-input" for="name">{{ item.label }} </label>
-            <input class="input" type="text" formControlName="{{ item.name }}" />
-          </div>
-        </ng-container>
+          </ng-container>
+
+          <ng-container *ngIf="item.type == 'text'">
+            <div class="col-12">
+              <label class="label-input" for="name">{{ item.label }} </label>
+              <input
+                class="input"
+                type="text"
+                formControlName="{{ item.name }}"
+              />
+            </div>
+          </ng-container>
+        </div>
       </div>
     </div>
   </form>
 </div>
-

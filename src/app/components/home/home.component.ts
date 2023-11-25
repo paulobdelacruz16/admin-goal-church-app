@@ -38,10 +38,11 @@ export class HomeComponent implements OnInit {
       });
 
       this.configService
-      .getAllSection({ url: 'section2' })
+      .getAllSection({ url: 'home' })
       .subscribe((data: any) => {
-        console.log('data', data);
-       this.itemListData4 = data.data;
+       this.itemListData4 = data.data?.section1.card;
+       console.log('data',   this.itemListData4 );
+
       });
 
 
