@@ -38,11 +38,9 @@ export class AdminContentComponent implements OnInit {
     this.myFormBuilder = this.formBuilder.group({});
     this.myMainFormBuilder = this.formBuilder.group({});
 
-
-
     this.configService.getAllSection({ url: 'home' }).subscribe((data: any) => {
       this.section3 = data;
-      console.log('  this.section3',   this.section3);
+      console.log('  this.section3', this.section3);
 
       for (var sections in this.section3.data) {
         if (sections === '_id' || sections === '__v') {
@@ -64,28 +62,35 @@ export class AdminContentComponent implements OnInit {
               const indexFound = dataModel.findIndex(
                 (x: any) => x.name === key
               );
-          
+
               dataModel[indexFound].value = this.section3.data[sections][key];
               dataModel[indexFound].sections = sections;
-              this.uiDataModel[sections].push( dataModel[indexFound])
+              this.uiDataModel[sections].push(dataModel[indexFound]);
 
               if (Array.isArray(this.section3.data[sections][key])) {
-                for (var index in this.section3.data[sections][key]) {
-                 this.cardForm = this.formBuilder.group({});
+                for (var index in this.section3.data[sections][key]) {+
+                  this.cardForm = this.formBuilder.group({});
                   this.addGroupCard(sections, key);
                   for (var key2 in this.section3.data[sections][key][index]) {
                     if (key2 === '_id' || key2 === '__v') {
                     } else {
                       this.addCard(key2);
-                      this.myMainFormBuilder.controls[sections].controls[key].controls[index].controls[
-                        key2
-                      ].setValue(this.section3.data[sections][key][index][key2]);
+                      this.myMainFormBuilder.controls[sections].controls[
+                        key
+                      ].controls[index].controls[key2].setValue(
+                        this.section3.data[sections][key][index][key2]
+                      );
                     }
                   }
                 }
               } else {
-                this.myMainFormBuilder.controls[sections].addControl(key, new FormControl('', Validators.required));
-                this.myMainFormBuilder.controls[sections].controls[key].setValue(this.section3.data[sections][key]);
+                this.myMainFormBuilder.controls[sections].addControl(
+                  key,
+                  new FormControl('', Validators.required)
+                );
+                this.myMainFormBuilder.controls[sections].controls[
+                  key
+                ].setValue(this.section3.data[sections][key]);
               }
             }
           }
@@ -107,9 +112,14 @@ export class AdminContentComponent implements OnInit {
     return this.myFormBuilder.controls['card'] as FormArray;
   }
 
-  addGroupCard(section:string, key:string) {
-    this.myMainFormBuilder.controls[section].addControl('card', this.formBuilder.array([]));
-    this.myMainFormBuilder.controls[section].controls['card'].push(this.cardForm);
+  addGroupCard(section: string, key: string) {
+    this.myMainFormBuilder.controls[section].addControl(
+      'card',
+      this.formBuilder.array([])
+    );
+    this.myMainFormBuilder.controls[section].controls['card'].push(
+      this.cardForm
+    );
   }
 
   get sections() {
@@ -123,14 +133,15 @@ export class AdminContentComponent implements OnInit {
 
   onSubmit() {
     console.log('myMainFormBuilder', this.myMainFormBuilder);
-    this.configService.dynamicAddApi({
-      body: this.myMainFormBuilder.value,
-      url: 'api/home'
-    })
-    .subscribe((data: any) => {
-      console.log('success', data);
-      this.modalRef?.hide();
-    });
+    this.configService
+      .dynamicAddApi({
+        body: this.myMainFormBuilder.value,
+        url: 'api/home',
+      })
+      .subscribe((data: any) => {
+        console.log('success', data);
+        this.modalRef?.hide();
+      });
   }
 
   isArray(value: any) {
@@ -140,16 +151,28 @@ export class AdminContentComponent implements OnInit {
   toArray(answers: any) {
     return Object.keys(answers).map((key) => answers[key]);
   }
-}
 
-type MyType = {
-  type: string;
-  value: string[];
-}
+  onAddCard(sections: string, i: number) {
+    this.cardForm = this.formBuilder.group({});
+    const key = 'card';
+    for (var key2 in this.section3.data[sections][key][0]) {
+      if (key2 === '_id' || key2 === '__v') {
+      } else {
+        this.addCard(key2);
+      }
+    }
+    this.myMainFormBuilder.controls[sections].controls['card'].push(
+      this.cardForm
+    );
+  
 
-export interface Artist {
-  name: string
-  shortname: string
-  reknown: string
-  bio: string
+    this.uiDataModel[sections][i].value = this.myMainFormBuilder.controls[sections].controls[key].value;
+  }
+
+  onRemoveCard(sections: string, i:number) {
+    const key = 'card';
+    const removeIndex = this.uiDataModel[sections][i].value.length - 1;
+    this.myMainFormBuilder.controls[sections].controls[key].removeAt(removeIndex ); 
+    this.uiDataModel[sections][i].value = this.myMainFormBuilder.controls[sections].controls[key].value;
+  }
 }
