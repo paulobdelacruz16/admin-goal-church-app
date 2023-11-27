@@ -68,7 +68,7 @@ export class AdminContentComponent implements OnInit {
               this.uiDataModel[sections].push(dataModel[indexFound]);
 
               if (Array.isArray(this.section3.data[sections][key])) {
-                for (var index in this.section3.data[sections][key]) {+
+                for (var index in this.section3.data[sections][key]) {
                   this.cardForm = this.formBuilder.group({});
                   this.addGroupCard(sections, key);
                   for (var key2 in this.section3.data[sections][key][index]) {
