@@ -56,39 +56,18 @@ export class AdminMainComponent implements OnInit {
   }
   
   openModal(item: any, data: any) {
-    this.configService.getAllImages().subscribe((data: any) => {
-      const initialState: ModalOptions = {
-        initialState: {
-          selectedMainData: item,
-          apiImages: data,
-          myFormBuilder: this.selectedformBuilder,
-          pageUrl: this.pageUrl,
-          dataModel: this.dataModel,
-          requestForm: this.requestForm,
-        },
-      };
-      this.buildModal(data, initialState);
+    this.configService.getAllImages().subscribe((dataImages: any) => {
+      this.buildModal(data, dataImages, item);
     });
   }
 
   addNewData(data: any) {
     this.configService.getAllImages().subscribe((dataImages: any) => {
-      const initialState: ModalOptions = {
-        initialState: {
-          selectedMainData: null,
-          apiImages: dataImages,
-          myFormBuilder: this.selectedformBuilder,
-          pageUrl: this.pageUrl,
-          dataModel: this.dataModel,
-          requestForm: this.requestForm,
-          newData: this.newData,
-        },
-      };
-      this.buildModal(data, initialState);
+      this.buildModal(data, dataImages, null);
     });
   }
 
-  buildModal(data: any, initialState:any) {
+  buildModal(data: any, dataImages:any, selectedData:any) {
     if (data === 'section1') {
       this.selectedformBuilder = this.myFormBuilder;
       this.dataModel = [
@@ -112,6 +91,18 @@ export class AdminMainComponent implements OnInit {
     };
     this.newData = true;
     this.pageUrl = `/images/`;
+
+    const initialState: ModalOptions = {
+      initialState: {
+        selectedMainData: selectedData,
+        apiImages: dataImages,
+        myFormBuilder: this.selectedformBuilder,
+        pageUrl: this.pageUrl,
+        dataModel: this.dataModel,
+        requestForm: this.requestForm,
+        newData: this.newData,
+      },
+    };
 
     this.modalRef = this.modalService.show(
       ModalView01Component,
