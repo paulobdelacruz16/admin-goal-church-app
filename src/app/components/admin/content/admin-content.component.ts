@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ModalView01Component } from '../../partials/modal-view-01/modal-view01.component';
+import { ModalView03Component } from '../../partials/modal-view-03/modal-view03.component';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { ConfigService } from 'src/app/services/config.service';
 import {
@@ -17,6 +17,7 @@ import {
 })
 export class AdminContentComponent implements OnInit {
   modalRef?: BsModalRef;
+
   constructor(
     private modalService: BsModalService,
     private configService: ConfigService,
@@ -174,5 +175,25 @@ export class AdminContentComponent implements OnInit {
     const removeIndex = this.uiDataModel[sections][i].value.length - 1;
     this.myMainFormBuilder.controls[sections].controls[key].removeAt(removeIndex ); 
     this.uiDataModel[sections][i].value = this.myMainFormBuilder.controls[sections].controls[key].value;
+  }
+  
+  onUpdateImage(section:string, key:string,field:any, i:number){
+    this.pageUrl = `/images/`;
+    this.configService.getAllImages().subscribe((dataImages: any) => {
+      const initialState: ModalOptions = {
+        initialState: {
+          apiImages: dataImages,
+          pageUrl: this.pageUrl
+        },
+      };
+      this.modalRef = this.modalService.show(
+        ModalView03Component,
+        initialState
+      );
+      
+      this.modalRef.content.messageEvent.subscribe((data: any) => {
+        this.myMainFormBuilder.controls[section].controls[key].controls[i].controls[field].setValue(data);
+      });
+    });
   }
 }

@@ -21,6 +21,8 @@ import { ModalView01Component } from '../../components/partials/modal-view-01/mo
 import { AboutComponent } from '../../components/about/about.component';
 import { SafeHtmlPipe } from '../../pipe/safe-html.pipe';
 import { ModalView02Component } from '../../components/partials/modal-view-02/modal-view02.component';
+import { ModalView03Component } from '../../components/partials/modal-view-03/modal-view03.component';
+
 import { MainComponent } from './main.component';
 
 
@@ -42,6 +44,7 @@ import { MainComponent } from './main.component';
     BoxListVideoComponent,
     ModalView01Component,
     ModalView02Component,
+    ModalView03Component,
     SafeHtmlPipe
   ],
   exports: [
@@ -61,6 +64,8 @@ import { MainComponent } from './main.component';
     BoxListVideoComponent,
     ModalView01Component,
     ModalView02Component,
+    ModalView03Component,
+
     SafeHtmlPipe
   ],
   imports: [

@@ -28,6 +28,9 @@
                         name="{{ item3.key }}"
                         formControlName="{{ item3.key }}"
                       />
+
+                      <button *ngIf="item3.key == 'image'" (click)="onUpdateImage(section.key, item.name, item3.key, id)">Update Image</button>
+
                     </div>
                   </div>
                 </div>

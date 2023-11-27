@@ -4,8 +4,6 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { ModalView02Component  } from "../partials/modal-view-02/modal-view02.component"
-import { ModalView01Component  } from "../partials/modal-view-01/modal-view01.component"
 
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import {
