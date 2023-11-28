@@ -1,11 +1,12 @@
+
 <div class="carousel-section-main">
   <carousel [isAnimated]="true">
-    <slide *ngFor="let item of ItemsList">
+    <slide *ngFor="let item of itemListData.card">
       <div class="carousel-description">
         <div class="text-center">
           <div class="slider-text-inner">
-            <h1>{{ item.description }}</h1>
-            <h4>{{ item.name }}</h4>
+            <h1>{{ item?.description }}</h1>
+            <h4>{{ item?.verse }}</h4>
           </div>
         </div>
       </div>

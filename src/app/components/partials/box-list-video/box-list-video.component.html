@@ -9,17 +9,17 @@
   <div class="row">
     <div
       class="col-md-4 animate-box"
-      *ngFor="let item of itemListData.data;"
+      *ngFor="let item of itemListData.card;"
     >
       <div class="sermon-entry">
-        <div class="sermon" style="background-image: url({{item.image}});">
+        <div class="sermon" [ngStyle]="{'background-image': 'url(' + pageUrl + item.image + ')'}">
           <div class="play">
             <a class="popup-vimeo" (click)="openModal(template, item)"
               ><i class="fa fa-play" aria-hidden="true"></i
             ></a>
           </div>
         </div>
-        <h3>{{item.name}}</h3>
+        <h3>{{item.title}}</h3>
         <span>{{item.pastor}}</span>
       </div>
     </div>

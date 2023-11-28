@@ -165,8 +165,6 @@ export class AdminContentComponent implements OnInit {
     this.myMainFormBuilder.controls[sections].controls['card'].push(
       this.cardForm
     );
-  
-
     this.uiDataModel[sections][i].value = this.myMainFormBuilder.controls[sections].controls[key].value;
   }
 

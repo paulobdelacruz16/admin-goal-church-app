@@ -1,17 +1,17 @@
 <div class="box-item-list" *ngIf="itemListData">
   <div class="row animate-box description-box">
     <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-      <h2>{{itemListData.title}}</h2>
+      <h2>{{itemListData?.title}}</h2>
       <p>
-        {{itemListData.description}}
+        {{itemListData?.description}}
       </p>
     </div>
   </div>
-  <div class="row" *ngIf="itemListData.data">
+  <div class="row" *ngIf="itemListData?.card">
     <div
       class="animate-box"
       [ngClass]="{'col\-md\-3': numberofItem == 3, 'col\-md\-4': numberofItem == 4}"
-      *ngFor="let item of itemListData.data; index as id"
+      *ngFor="let item of itemListData.card; index as id"
     >
       <div class="services">
         <a href="#" class="img-holder" *ngIf="item.image"
@@ -19,7 +19,7 @@
         /></a>
         <div class="desc">
           <h3>
-            <a href="#">{{ item.name }}</a>
+            <a href="#">{{ item.title }}</a>
           </h3>
           <p>{{ item.description }}</p>
           <a [href]="item.url">Read More <i class="fa fa-arrow-right"></i></a>

@@ -24,6 +24,7 @@ import { ModalView02Component } from '../../components/partials/modal-view-02/mo
 import { ModalView03Component } from '../../components/partials/modal-view-03/modal-view03.component';
 
 import { MainComponent } from './main.component';
+import { TextBannerComponent } from '../partials/text-banner/text-banner.component'
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { MainComponent } from './main.component';
     ModalView01Component,
     ModalView02Component,
     ModalView03Component,
+    TextBannerComponent,
     SafeHtmlPipe
   ],
   exports: [
@@ -65,7 +67,7 @@ import { MainComponent } from './main.component';
     ModalView01Component,
     ModalView02Component,
     ModalView03Component,
-
+    TextBannerComponent,
     SafeHtmlPipe
   ],
   imports: [
