@@ -33,21 +33,17 @@ export class MainComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       this.browser = true;
     const navMain = document.getElementById('navbarCollapse');
-    console.log('test123', window.location.href);
-
     console.log('2222',navMain);
 
      this.navlist = [
       { name: 'Home', src: "home" },
       { name: 'Sermons',  src: "sermons" },
-      { name: 'News', src: "news" },
       { name: 'Events', src: "events" },
       { name: 'About', src: "about" },
       { name: 'Contact', src: "contact" },
       { name: 'Donate', src: "donate" }
     ];
     this.selectedNavId = 0;
-    console.log('win',);
     if(window.location.pathname){
       
     }

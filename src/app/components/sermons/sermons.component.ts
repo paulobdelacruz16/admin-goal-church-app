@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from 'src/app/services/config.service';
 
 
 @Component({
@@ -7,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: [ './sermons.component.scss' ]
 })
 export class SermonsComponent implements OnInit {
-  constructor() {}
+  constructor(  private configService: ConfigService) {}
 
-
+  goalContent:any;
   ngOnInit(): void {
-    console.log('sermons page');
+    this.configService
+    .getAllSection({ url: 'sermon' })
+    .subscribe((data: any) => {
+     this.goalContent = data.data;
+     console.log('homepage - goalContent',   this.goalContent );
+    });
   }
 }

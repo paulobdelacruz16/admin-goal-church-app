@@ -4,15 +4,17 @@ import { AdminMainComponent } from './main/admin-main.component'
 import { AdminUserComponent } from './user/admin-user.component';
 import { AdminImagesComponent } from './admin-images/admin-images.component';
 import { AdminContentComponent } from './content/admin-content.component';
+import { PageCategorytComponent } from './page-category/page-category.component';
+
 
 
 const routes: Routes = [
-  { path: '', component: AdminMainComponent },
+  { path: '', component: PageCategorytComponent, pathMatch: 'full'},
   { path: 'user', component: AdminUserComponent },
   { path: 'serverimages', component: AdminImagesComponent },
-  { path: 'content', component: AdminContentComponent },
+  { path: 'content/:id', component: AdminContentComponent },
 
-
+  { path: 'category', component: AdminMainComponent },
 ];
 
 @NgModule({

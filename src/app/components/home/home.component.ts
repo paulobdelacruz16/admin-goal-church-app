@@ -1,20 +1,8 @@
 import {
-  animate,
-  query,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
-import {
   Component,
-  TemplateRef,
-  ElementRef,
-  HostListener,
   OnInit,
-  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ConfigService } from 'src/app/services/config.service';
 
 @Component({
@@ -24,7 +12,6 @@ import { ConfigService } from 'src/app/services/config.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
-  modalRef?: BsModalRef;
   goalContent:any;
 
   constructor(
@@ -36,7 +23,7 @@ export class HomeComponent implements OnInit {
     .getAllSection({ url: 'home' })
     .subscribe((data: any) => {
      this.goalContent = data.data;
-     console.log('homepage - goalContent',   this.goalContent );
+     console.log('homepage - goalContent',  this.goalContent );
     });
   }
 }

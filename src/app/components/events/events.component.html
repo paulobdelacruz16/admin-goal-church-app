@@ -1,3 +1,6 @@
-<div>
-  events page
-</div>
+<div *ngIf="goalContent">
+  <app-flexbox-side
+  [itemListData]="goalContent?.section1"
+  >
+  </app-flexbox-side>
+</div>  

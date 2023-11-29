@@ -15,9 +15,12 @@ export class BoxListVideoComponent implements OnInit {
   selectedVideoURL:any;
 
   constructor(private _sanitizer: DomSanitizer, private modalService: BsModalService){}
-  pageUrl:any = "/images/";
+  pageUrl:any = "http://localhost:4200/images/";
   @Input() itemListData:any;
   ngOnInit(): void {
+    console.log('itemListData', this.itemListData);
+    console.log('itemListData', this.pageUrl);
+    
   }
 
   openModal(template: TemplateRef<any>, item:any) {

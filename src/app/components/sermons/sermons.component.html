@@ -1,3 +1,7 @@
-<div>
-  sermons
+<div *ngIf="goalContent">
+  <app-box-list-video
+    [itemListData]="goalContent?.section1"
+  ></app-box-list-video>
 </div>
+
+

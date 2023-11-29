@@ -31,7 +31,6 @@ export class HeaderComponent implements OnInit {
     this.navlist = [
       { name: 'Home', src: '/home', url: 'home'},
       { name: 'Sermons', src: '/sermons', url: 'home'},
-      { name: 'News', src: '/news', url: 'home'},
       { name: 'Events', src: '/events', url: 'home'},
       { name: 'About', src: '/about', url: 'home'},
       { name: 'Contact', src: '/contact', url: 'home'},

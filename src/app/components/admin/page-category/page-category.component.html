@@ -1,0 +1,7 @@
+<div class="admin-page-category">
+  <div class="main-category" *ngFor="let item of mainCategory;  let i = index" >
+
+      <a  routerLink="/admin/content/{{item | lowercase}}">{{item }}</a>
+
+  </div>
+</div>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { MainRoutingModule } from './main-routing.module';
 import { HomeComponent } from '../../../app/components/home/home.component'
 import { NewsComponent } from '../../components/news/news.component';
+import { EventsComponent } from '../../components/events/events.component';
 import { ContactComponent } from '../../components/contact/contact.component';
 import { DonateComponent } from '../../components/donate/donate.component';
 import { SermonsComponent } from '../../components/sermons/sermons.component';
@@ -17,6 +18,7 @@ import { BoxListVideoComponent } from '../../components/partials/box-list-video/
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalView01Component } from '../../components/partials/modal-view-01/modal-view01.component';
+import { FlexboxSideComponent } from '../partials/flexbox-side/flexbox-side.component'
 
 import { AboutComponent } from '../../components/about/about.component';
 import { SafeHtmlPipe } from '../../pipe/safe-html.pipe';
@@ -24,14 +26,15 @@ import { ModalView02Component } from '../../components/partials/modal-view-02/mo
 import { ModalView03Component } from '../../components/partials/modal-view-03/modal-view03.component';
 
 import { MainComponent } from './main.component';
-import { TextBannerComponent } from '../partials/text-banner/text-banner.component'
-
+import { TextBannerComponent } from '../partials/text-banner/text-banner.component';
+import { PageContainerComponent } from '../partials/page-container/page-container.component';
 
 @NgModule({
   declarations: [
     MainComponent,
     HomeComponent,
     NewsComponent,
+    EventsComponent,
     AboutComponent,
     ContactComponent,
     DonateComponent,
@@ -47,12 +50,15 @@ import { TextBannerComponent } from '../partials/text-banner/text-banner.compone
     ModalView02Component,
     ModalView03Component,
     TextBannerComponent,
-    SafeHtmlPipe
+    FlexboxSideComponent,
+    SafeHtmlPipe,
+    PageContainerComponent
   ],
   exports: [
     MainComponent,
     HomeComponent,
     NewsComponent,
+    EventsComponent,
     AboutComponent,
     ContactComponent,
     DonateComponent,
@@ -68,7 +74,9 @@ import { TextBannerComponent } from '../partials/text-banner/text-banner.compone
     ModalView02Component,
     ModalView03Component,
     TextBannerComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    FlexboxSideComponent,
+    PageContainerComponent
   ],
   imports: [
     CommonModule,

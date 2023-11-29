@@ -8,6 +8,7 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-admin-content',
@@ -21,7 +22,8 @@ export class AdminContentComponent implements OnInit {
   constructor(
     private modalService: BsModalService,
     private configService: ConfigService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute
   ) {}
   section3: any;
   myFormBuilder: any;
@@ -34,12 +36,14 @@ export class AdminContentComponent implements OnInit {
   cardForm = this.formBuilder.group({});
   // uiDataModel: any = {}
   uiDataModel: { [key: string]: any[] } = {};
+  category:any;
 
   ngOnInit(): void {
+    this.category = this.route.snapshot.paramMap.get('id')?.toLowerCase();
     this.myFormBuilder = this.formBuilder.group({});
     this.myMainFormBuilder = this.formBuilder.group({});
-
-    this.configService.getAllSection({ url: 'home' }).subscribe((data: any) => {
+    console.log('category', this.category);
+    this.configService.getAllSection({ url: this.category }).subscribe((data: any) => {
       this.section3 = data;
       console.log('  this.section3', this.section3);
 
@@ -137,7 +141,7 @@ export class AdminContentComponent implements OnInit {
     this.configService
       .dynamicAddApi({
         body: this.myMainFormBuilder.value,
-        url: 'api/home',
+        url: 'api/' + this.category,
       })
       .subscribe((data: any) => {
         console.log('success', data);

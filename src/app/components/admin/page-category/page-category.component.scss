@@ -1,0 +1,12 @@
+.admin-page-category{
+  .main-category{
+    margin: 5px;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  a:not([href]):not([class]), a:not([href]):not([class]):hover {
+    color: blue;
+    cursor: pointer;
+  }
+}

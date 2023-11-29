@@ -12,7 +12,7 @@
       *ngFor="let item of itemListData.card;"
     >
       <div class="sermon-entry">
-        <div class="sermon" [ngStyle]="{'background-image': 'url(' + pageUrl + item.image + ')'}">
+        <div class="sermon" [ngStyle]="{'background-image': 'url('+ pageUrl + item.image + ')'}">
           <div class="play">
             <a class="popup-vimeo" (click)="openModal(template, item)"
               ><i class="fa fa-play" aria-hidden="true"></i
@@ -20,7 +20,7 @@
           </div>
         </div>
         <h3>{{item.title}}</h3>
-        <span>{{item.pastor}}</span>
+        <span>{{item.author}}</span>
       </div>
     </div>
   </div>
