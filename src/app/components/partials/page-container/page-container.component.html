@@ -1,3 +1,9 @@
-<div class="box-item-list" *ngIf="itemListData">
-  Page container
+<div class="box-item-list" *ngIf="goalContent">
+  <div>
+    {{goalContent.section1.image | json}}
+    <!-- <img src="goalContent?.section1?.image"> -->
+    <img class="img-responsive" [src]="pageUrl + goalContent?.section1?.image" alt="image"/>
+  </div>
+  <!-- <app-text-banner [itemListData]="goalContent?.section1" *ngIf="goalContent.section ==='text-banner'">
+  </app-text-banner> -->
 </div>

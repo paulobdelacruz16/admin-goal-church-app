@@ -25,6 +25,6 @@ export class Routes{
         server.post('/ng/api/dynamicApi/update',  dynmamicApiController.updateData);
         server.post('/ng/api/dynamicApi/delete',  dynmamicApiController.deleteData);
         server.post('/ng/api/dynamicApi/add',  dynmamicApiController.postData);
-
+        server.get('/ng/api/DynamicPageContent/pagename/:url',  dynmamicApiController.getDynamicData);
     }
 }

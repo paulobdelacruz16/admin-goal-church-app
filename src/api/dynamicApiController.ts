@@ -17,6 +17,22 @@ export class DynmamicApiController {
     return data;
   }
 
+  async getDynamicData(req: any, res: any) {
+    const param = req.params.url.replace(/^./, "");
+    console.log('param123', param);
+    var url = `http://localhost:3001/api/DynamicPageContent/pagename/${param}`
+    var response = await fetch(url, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'},
+    }).then((response: any) => {
+      return response;
+    }).catch((err: any) => {console.log(err);});
+    const data = await response.json();
+    res.status(200).send({data});
+    return data;
+  }
+
+
   async postData(req: any, res: any) {
     var url = `http://localhost:3001/${req.body.url}`
     var response = await fetch(url, {

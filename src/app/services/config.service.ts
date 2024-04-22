@@ -35,6 +35,10 @@ export class ConfigService {
   return this.http.get<any>(`/ng/api/dynamicApi/get/:${data.url}`);
   }
 
+  getDynamicPageContent(data:any): Observable<any> {
+    return this.http.get<any>(`/ng/api/DynamicPageContent/pagename/:${data.url}`);
+  }
+
   getAllSection2(): Observable<any> {
     return this.http.get<any>(`api/section2`);
   }

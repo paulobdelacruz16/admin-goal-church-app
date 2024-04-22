@@ -52,14 +52,19 @@ export class AdminComponent implements OnInit {
         id: 2,
       },
       {
+        name: 'Goal Church Events',
+        url: '/admin/events',
+        id: 3,
+      },
+      {
         name: 'User',
         url: '/admin/user',
-        id: 3,
+        id: 4,
       },
       {
         name: 'Server Images',
         url: '/admin/serverimages',
-        id: 4,
+        id: 5,
       },
     ];
     this.selectedNavId = this.navigation?.[0].id;
