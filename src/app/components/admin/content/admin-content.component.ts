@@ -15,9 +15,13 @@ export class AdminContentComponent implements OnInit {
   ) {}
   section3: any;
   category:any;
+  action:any;
+  cta:any;
 
   ngOnInit(): void {
     this.category = this.route.snapshot.paramMap.get('id')?.toLowerCase();
+    this.cta = `${this.category}`;
+    this.action = 'post';
     this.configService.getAllSection({ url: this.category }).subscribe((data: any) => {
       this.section3 = data;
       console.log('this.section', this.section3);

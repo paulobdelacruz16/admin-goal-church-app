@@ -49,6 +49,16 @@
                 type="text"
                 formControlName="{{ item.name }}"
               />
+              <button *ngIf="item.name == 'image'" (click)="onUpdateImage(section.key, item.name, null, null)">Update Image</button>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="item.type == 'text-area'">
+            <div class="col-12">
+              <label class="label-input" for="name">{{ item.label }} </label>
+             <textarea  class="input" type="text"
+             formControlName="{{ item.name }}" rows="4" cols="50">
+             </textarea>
             </div>
           </ng-container>
         </div>

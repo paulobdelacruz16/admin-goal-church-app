@@ -1,9 +1,13 @@
-<div class="box-item-list" *ngIf="goalContent">
-  <div>
-    {{goalContent.section1.image | json}}
-    <!-- <img src="goalContent?.section1?.image"> -->
-    <img class="img-responsive" [src]="pageUrl + goalContent?.section1?.image" alt="image"/>
+<div class="page-container" *ngIf="goalContent">
+  <app-image-banner 
+  [goalContent]="goalContent?.section1">
+  </app-image-banner>
+  <div class="page-description">
+    <h4>
+      {{goalContent?.section1.title}}
+    </h4>
+    <p>
+      {{goalContent?.section1.paragraph}}
+    </p>
   </div>
-  <!-- <app-text-banner [itemListData]="goalContent?.section1" *ngIf="goalContent.section ==='text-banner'">
-  </app-text-banner> -->
 </div>

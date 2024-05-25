@@ -22,9 +22,14 @@ export class AdminEventsGroupComponent implements OnInit {
   mainCategory:any = ['lifeclass','sol'];
   category:any;
   groupData:any;
+  actions:any;
+  cta:any;
+  action:any;
   ngOnInit(): void {
-    this.category = this.route.snapshot.paramMap.get('id')?.toLowerCase();
 
+    this.category = this.route.snapshot.paramMap.get('id')?.toLowerCase();
+    this.cta = `dynamicPageContent`;
+    this.action = 'put';
     // this.configService
     //   .getAllSection({ url: 'section1' })
     //   .subscribe((data: any) => {
@@ -33,10 +38,8 @@ export class AdminEventsGroupComponent implements OnInit {
     // this.mainCategory = 
     // const category = this.route.snapshot.paramMap.get('event')?.toLowerCase();
     // console.log('category', category);
-
     this.configService.getDynamicPageContent({ url:this.category })
-    .subscribe((data: any) => {
-     console.log('homepage - goalContent',  data.data);
+    .subscribe((data: any,) => {
      this.groupData = data;
     });
   }

@@ -20,7 +20,7 @@ export class DynmamicApiController {
   async getDynamicData(req: any, res: any) {
     const param = req.params.url.replace(/^./, "");
     console.log('param123', param);
-    var url = `http://localhost:3001/api/DynamicPageContent/pagename/${param}`
+    var url = `http://localhost:3001/api/DynamicPageContent/${param}`
     var response = await fetch(url, {
       method: 'GET',
       headers: {'Content-Type': 'application/json'},
@@ -48,6 +48,23 @@ export class DynmamicApiController {
   }
 
   async updateData(req: any, res: any) {
+    console.log('welcome to update data');
+    var url = `http://localhost:3001/${req.body.url}/${req.body.id}`
+    console.log('url', url);
+    console.log('req.body', req.body);
+    var response = await fetch(url, {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(req.body.body),
+    }).then((response: any) => {
+      return response;
+    }).catch((err: any) => {console.log(err);});
+    const data = await response.json();
+    res.status(200).send({data});
+    return 'data';
+  }
+
+  async updateDataV2(req: any, res: any) {
     console.log('welcome to update data');
     var url = `http://localhost:3001/${req.body.url}/${req.body.id}`
     var response = await fetch(url, {

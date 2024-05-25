@@ -37,24 +37,22 @@ export class AdminDynamicContentComponent implements OnInit {
   uiDataModel: { [key: string]: any[] } = {};
   @Input() mainData:any;
   @Input() category:any;
-
+  @Input() cta:any;
+  @Input() action:any;
   
   ngOnInit(): void {
     this.myFormBuilder = this.formBuilder.group({});
     this.myMainFormBuilder = this.formBuilder.group({});
-    console.log('category', this.category);
-    console.log('mainData', this.mainData);
       for (var sections in this.mainData.data) {
-        if (sections === '_id' || sections === '__v') {
-        } else {
+        if (sections !== '_id' && sections !== '__v') {
           this.addMainGroupCard(sections);
           this.uiDataModel[sections] = [];
           for (var key in this.mainData.data[sections]) {
-            if (key === '_id' || key === '__v') {
-            } else {
+            if (key !== '_id' && key !== '__v') {
               const dataModel: any = [
                 { label: 'Title', type: 'text', name: 'title' },
                 { label: 'Description', type: 'text', name: 'description' },
+                { label: 'Paragraph', type: 'text-area', name: 'paragraph' },
                 { label: 'Url', type: 'text', name: 'url' },
                 { label: 'Image', type: 'text', name: 'image' },
                 { label: 'Verse', type: 'text', name: 'verse' },
@@ -65,10 +63,6 @@ export class AdminDynamicContentComponent implements OnInit {
                 (x: any) => x.name === key
               );
 
-              console.log('key', key);
-              console.log('indexFound', indexFound);
-
-
               dataModel[indexFound].value = this.mainData.data[sections][key];
               dataModel[indexFound].sections = sections;
               this.uiDataModel[sections].push(dataModel[indexFound]);
@@ -78,8 +72,7 @@ export class AdminDynamicContentComponent implements OnInit {
                   this.cardForm = this.formBuilder.group({});
                   this.addGroupCard(sections, key);
                   for (var key2 in this.mainData.data[sections][key][index]) {
-                    if (key2 === '_id' || key2 === '__v') {
-                    } else {
+                    if (key2 !== '_id' && key2 !== '__v') {
                       this.addCard(key2);
                       this.myMainFormBuilder.controls[sections].controls[
                         key
@@ -138,16 +131,26 @@ export class AdminDynamicContentComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('myMainFormBuilder', this.myMainFormBuilder);
-    this.configService
-      .dynamicAddApi({
+    if(this.action === 'post'){
+      this.configService.dynamicAddApi({
         body: this.myMainFormBuilder.value,
-        url: 'api/' + this.category,
+        url: 'api/' + this.cta,
       })
       .subscribe((data: any) => {
         console.log('success', data);
         this.modalRef?.hide();
       });
+    }else{
+      this.configService.dynamicUpdateApi({ 
+        body: this.myMainFormBuilder.value,
+        url:'api/' + this.cta,
+        id: this.category
+      })
+      .subscribe((data: any) => {
+        console.log('success', data);
+        this.modalRef?.hide();
+      });
+    }
   }
 
   isArray(value: any) {
@@ -180,7 +183,7 @@ export class AdminDynamicContentComponent implements OnInit {
     this.uiDataModel[sections][i].value = this.myMainFormBuilder.controls[sections].controls[key].value;
   }
   
-  onUpdateImage(section:string, key:string,field:any, i:number){
+  onUpdateImage(section:string, key:string,field:any, i:any){
     this.pageUrl = `/images/`;
     this.configService.getAllImages().subscribe((dataImages: any) => {
       const initialState: ModalOptions = {
@@ -195,7 +198,11 @@ export class AdminDynamicContentComponent implements OnInit {
       );
       
       this.modalRef.content.messageEvent.subscribe((data: any) => {
-        this.myMainFormBuilder.controls[section].controls[key].controls[i].controls[field].setValue(data);
+        if(field){
+          this.myMainFormBuilder.controls[section].controls[key].controls[i].controls[field].setValue(data);
+        }else{
+          this.myMainFormBuilder.controls[section].controls[key].setValue(data);
+        }
       });
     });
   }

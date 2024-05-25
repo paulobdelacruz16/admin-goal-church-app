@@ -33,8 +33,8 @@ export class HeaderComponent implements OnInit {
       { name: 'Sermons', src: '/sermons', url: 'home'},
       { name: 'Events', src: '/events', url: 'home'},
       { name: 'About', src: '/about', url: 'home'},
-      { name: 'Contact', src: '/contact', url: 'home'},
-      { name: 'Donate', src: '/donate', url: 'home'},
+      // { name: 'Contact', src: '/contact', url: 'home'},
+      // { name: 'Donate', src: '/donate', url: 'home'},
     ];
   
     const aa = this.router.events.subscribe((event: NavigationEvent) => {

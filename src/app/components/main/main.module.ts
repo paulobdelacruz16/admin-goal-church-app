@@ -21,13 +21,15 @@ import { ModalView01Component } from '../../components/partials/modal-view-01/mo
 import { FlexboxSideComponent } from '../partials/flexbox-side/flexbox-side.component'
 
 import { AboutComponent } from '../../components/about/about.component';
-import { SafeHtmlPipe } from '../../pipe/safe-html.pipe';
+import { NewLineHtmlPipe } from '../../pipe/new-line.pipe';
 import { ModalView02Component } from '../../components/partials/modal-view-02/modal-view02.component';
 import { ModalView03Component } from '../../components/partials/modal-view-03/modal-view03.component';
 
 import { MainComponent } from './main.component';
 import { TextBannerComponent } from '../partials/text-banner/text-banner.component';
 import { PageContainerComponent } from '../partials/page-container/page-container.component';
+import { ImageBannerComponent } from '../partials/image-banner/image-banner.component';
+import { SafeHtmlPipe } from 'src/app/pipe/safe-html.pipe';
 
 @NgModule({
   declarations: [
@@ -51,8 +53,10 @@ import { PageContainerComponent } from '../partials/page-container/page-containe
     ModalView03Component,
     TextBannerComponent,
     FlexboxSideComponent,
-    SafeHtmlPipe,
-    PageContainerComponent
+    NewLineHtmlPipe,
+    PageContainerComponent,
+    ImageBannerComponent,
+    SafeHtmlPipe
   ],
   exports: [
     MainComponent,
@@ -74,16 +78,18 @@ import { PageContainerComponent } from '../partials/page-container/page-containe
     ModalView02Component,
     ModalView03Component,
     TextBannerComponent,
-    SafeHtmlPipe,
+    NewLineHtmlPipe,
     FlexboxSideComponent,
-    PageContainerComponent
+    PageContainerComponent,
+    ImageBannerComponent,
+    SafeHtmlPipe
   ],
   imports: [
     CommonModule,
     CarouselModule.forRoot(),
     MainRoutingModule,
     ModalModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: []
 })
