@@ -22,7 +22,7 @@
             <a href="#">{{ item.title }}</a>
           </h3>
           <p>{{ item.description }}</p>
-          <a [href]="item.url">Read More <i class="fa fa-arrow-right"></i></a>
+          <a [href]="item.url" *ngIf="item.url">Read More <i class="fa fa-arrow-right"></i></a>
         </div>
       </div>
     </div>
