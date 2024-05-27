@@ -1,1 +1,18 @@
-This is about page
+<div class="about" *ngIf="goalContent">
+    <app-image-banner 
+    [goalContent]="goalContent?.section1">
+    </app-image-banner>
+    <div class="page-description">
+      <h4>
+        {{goalContent?.section1.title}}
+      </h4>
+      <p>
+        {{goalContent?.section1.paragraph}}
+      </p>
+    </div>
+    <app-box-item-list
+    [itemListData]="card"
+    numberofItem="4"
+    ></app-box-item-list>
+  </div>
+  

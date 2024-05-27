@@ -19,7 +19,7 @@ export class AdminEventComponent implements OnInit {
   ) {}
 
   section1:any;
-  mainCategory:any = ['lifeclass','sol']
+  mainCategory:any = ['lifeclass','sol', 'about']
   ngOnInit(): void {
     console.log('hey pau');
     // this.configService

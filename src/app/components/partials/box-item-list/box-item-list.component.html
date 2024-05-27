@@ -1,5 +1,5 @@
-<div class="box-item-list" *ngIf="itemListData">
-  <div class="row animate-box description-box">
+<div class="box-item-list">
+  <div class="row animate-box description-box" *ngIf="itemListData?.title">
     <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
       <h2>{{itemListData?.title}}</h2>
       <p>

@@ -1,8 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ConfigService } from 'src/app/services/config.service';
 
 @Component({
   selector: 'app-about',
@@ -11,11 +9,23 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class AboutComponent implements OnInit {
-  constructor( ) {
-  }
+  @Input() itemListData:any;
+  @Input() numberofItem:any;
+  pageUrl:any
+  category:any;
+  goalContent:any;
+  card:any;
+  constructor(
+    private route: ActivatedRoute,
+    private configService: ConfigService
 
+  ) {}
   ngOnInit(): void {
-
+    this.pageUrl = "/images/"
+    this.configService.getDynamicPageContent({ url:'about' })
+    .subscribe((data: any) => {
+     this.goalContent = data.data;
+      this.card = {card: this.goalContent?.section1.card};
+    });
   }
-
 }
