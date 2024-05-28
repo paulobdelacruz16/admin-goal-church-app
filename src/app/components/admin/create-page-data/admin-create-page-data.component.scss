@@ -1,2 +1,40 @@
-.admin-event {
-}
+p {
+    font-family: Lato;
+  }
+  
+  .item {
+    margin-bottom: 12px;
+    padding: var(--padding);
+    border: 1px dotted black;
+    background: #fff;
+    cursor: move;
+  }
+  
+  .table,
+  .menu {
+    padding: var(--padding);
+  }
+  
+  .drap-copy {
+    display: flex;
+    border: 1px dotted black;
+
+  }
+  .drap-copy > div {
+    flex: 1;
+  }
+  .drap-copy > div:first-child {
+    border-right: var(--border);
+  }
+  .desc {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.45);
+  }
+
+  .table{
+
+  }
+  

@@ -15,6 +15,9 @@ import { AdminDynamicContentComponent } from './admin-dynamic-content/admin-dyna
 import { PageCategorytComponent } from './page-category/page-category.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminCreatePageDataComponent } from './create-page-data/admin-create-page-data.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {CdkDrag, CdkDropList, CdkDropListGroup} from '@angular/cdk/drag-drop';
+
 @NgModule({
   declarations: [
     AdminComponent,
@@ -48,7 +51,11 @@ import { AdminCreatePageDataComponent } from './create-page-data/admin-create-pa
     AdminRoutingModule,
     ModalModule.forRoot(),
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSlideToggleModule,
+    CdkDrag,
+    CdkDropList,
+    CdkDropListGroup,
   ],
   providers: []
 })

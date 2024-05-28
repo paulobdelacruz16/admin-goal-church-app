@@ -1,5 +1,43 @@
-<div>
-  <p>
-    sample text
-  </p>
+
+<div class="drap-copy">
+  <div>
+    <ul
+      class="menu"
+      cdkDropList
+      #menuList="cdkDropList"
+      [cdkDropListData]="menu"
+      cdkDropListSortingDisabled
+      [cdkDropListConnectedTo]="[tableList]"
+      (cdkDropListDropped)="drop($event)"
+      (cdkDropListExited)="exited($event)"
+      (cdkDropListEntered)="entered()"
+    >
+      <li class="item" *ngFor="let item of menu" cdkDrag [cdkDragData]="item">
+        <div class="item" *cdkDragPlaceholder>
+          <a>{{ item.title }}</a>
+        </div>
+        <a>{{ item.title }}</a>
+      </li>
+    </ul>
+  </div>
+
+  <div
+    class="table"
+    cdkDropList
+    #tableList="cdkDropList"
+    [cdkDropListData]="table"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div class="content">
+      <div>
+        <div class="item" *ngFor="let item of table; let idx = index" cdkDrag>
+          <p>Type - {{ item.title }}</p>
+          <div>
+            <label class="label-input" for="name">Name:</label>
+            <input class="input admin-content-input" type="text"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
