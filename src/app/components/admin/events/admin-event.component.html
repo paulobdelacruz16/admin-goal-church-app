@@ -1,4 +1,4 @@
-<div class="admin-page-category">
+<div class="admin-page-category" *ngIf="mainCategory">
   <div class="main-category" *ngFor="let item of mainCategory;  let i = index" >
       <a  routerLink="/admin/events/{{item | lowercase}}">{{item }}</a>
   </div>

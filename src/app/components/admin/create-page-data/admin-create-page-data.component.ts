@@ -2,12 +2,12 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ConfigService } from 'src/app/services/config.service';
 
 @Component({
-  selector: 'app-admin-event',
-  templateUrl: './admin-event.component.html',
-  styleUrls: ['./admin-event.component.scss'],
+  selector: 'app-admin-create-page-data',
+  templateUrl: './admin-create-page-data.component.html',
+  styleUrls: ['./admin-create-page-data.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class AdminEventComponent implements OnInit {
+export class AdminCreatePageDataComponent implements OnInit {
   constructor(
     private configService: ConfigService,
   ) {}
@@ -20,4 +20,5 @@ export class AdminEventComponent implements OnInit {
         this.mainCategory = data.data;
       });
   }
+
 }

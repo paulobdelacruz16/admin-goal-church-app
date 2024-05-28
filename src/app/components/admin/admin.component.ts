@@ -47,8 +47,8 @@ export class AdminComponent implements OnInit {
         id: 1,
       },
       {
-        name: 'Goal Church Content',
-        url: '/admin/content',
+        name: 'Create Page Data',
+        url: '/admin/create-page-data',
         id: 2,
       },
       {

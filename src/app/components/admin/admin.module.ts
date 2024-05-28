@@ -14,7 +14,7 @@ import { AdminEventsGroupComponent } from './events-group/admin-events-group.com
 import { AdminDynamicContentComponent } from './admin-dynamic-content/admin-dynamic-content.component';
 import { PageCategorytComponent } from './page-category/page-category.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { AdminCreatePageDataComponent } from './create-page-data/admin-create-page-data.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -26,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     PageCategorytComponent,
     AdminEventComponent,
     AdminEventsGroupComponent,
-    AdminDynamicContentComponent
+    AdminDynamicContentComponent,
+    AdminCreatePageDataComponent
   ],
   exports: [
     AdminComponent,
@@ -38,7 +39,8 @@ import { HttpClientModule } from '@angular/common/http';
     PageCategorytComponent,
     AdminEventComponent,
     AdminEventsGroupComponent,
-    AdminDynamicContentComponent
+    AdminDynamicContentComponent,
+    AdminCreatePageDataComponent
   ],
   imports: [
     CommonModule,

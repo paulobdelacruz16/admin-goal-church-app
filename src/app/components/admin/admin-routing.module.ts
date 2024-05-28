@@ -7,6 +7,7 @@ import { AdminContentComponent } from './content/admin-content.component';
 import { PageCategorytComponent } from './page-category/page-category.component';
 import { AdminEventComponent } from './events/admin-event.component';
 import { AdminEventsGroupComponent  } from './events-group/admin-events-group.component';
+import { AdminCreatePageDataComponent } from './create-page-data/admin-create-page-data.component';
 
 
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'category', component: AdminMainComponent },
   { path: 'events', component: AdminEventComponent },
   { path: 'events/:id', component: AdminEventsGroupComponent },
+  { path: 'create-page-data', component: AdminCreatePageDataComponent },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
