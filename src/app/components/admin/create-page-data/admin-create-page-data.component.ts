@@ -7,34 +7,52 @@ import {
   CdkDropListGroup,
   moveItemInArray,
   copyArrayItem,
-  transferArrayItem
+  transferArrayItem,
+  CdkDragExit,
+  CdkDragEnter,
 } from '@angular/cdk/drag-drop';
+import {
+  FormArray,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-admin-create-page-data',
   templateUrl: './admin-create-page-data.component.html',
   styleUrls: ['./admin-create-page-data.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  
 })
-
 export class AdminCreatePageDataComponent implements OnInit {
+  profileForm: any;
   constructor(
     private configService: ConfigService,
-  ) {}
-
-  mainCategory:any;
+    private formBuilder: FormBuilder
+  ) {
+    this.profileForm = this.formBuilder.group({
+      favoriteBooks: this.formBuilder.array([this.formBuilder.control({})]),
+    });
+  }
+  mainCategory: any;
+  myFormBuilder: any;
+  myMainFormBuilder: any;
   ngOnInit(): void {
+    this.myFormBuilder = this.formBuilder.group({});
+    // this.myMainFormBuilder = this.formBuilder.group({});
+    this.myMainFormBuilder = this.formBuilder.group({
+      arrayData: this.formBuilder.array([]),
+    });
   }
 
-  menu: Array<any> = [
-    { title: 'Text', price: 12, id: 1 },
-    { title: 'Paragraph', price: 12, id: 2 },
-    { title: 'Image', price: 12, id: 3 },
-    { title: 'Card', price: 12, id: 4 },
+  dataType: Array<any> = [
+    { label: 'Text', type: 'text', id: 1 },
+    { label: 'Paragraph', type: 'paragraph', id: 2 },
+    { label: 'Image', type: 'image', id: 3 },
+    { label: 'Card', type: 'card', id: 4 },
   ];
   table: Array<any> = [];
-
+  newTable: any;
   drop(event: any) {
     if (event.previousContainer !== event.container) {
       copyArrayItem(
@@ -43,6 +61,7 @@ export class AdminCreatePageDataComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
+      this.addBook(event.item.data);
     } else {
       moveItemInArray(
         event.container.data,
@@ -51,21 +70,45 @@ export class AdminCreatePageDataComponent implements OnInit {
       );
     }
     if (event.previousContainer.data) {
-      this.menu = this.menu.filter((f) => !f.temp);
+      this.dataType = this.dataType.filter((f) => !f.temp);
     }
   }
 
-  exited(event: any) {
+  noReturnPredicate() {
+    return false;
+  }
+
+  onSourceListExited(event: CdkDragExit<any>) {
     const currentIdx = event.container.data.findIndex(
-      (f:any) => f.id === event.item.data.id
+      (f: any) => f.id === event.item.data.id
     );
-    this.menu.splice(currentIdx + 1, 0, {
+    this.dataType.splice(currentIdx + 1, 0, {
       ...event.item.data,
       temp: true,
     });
   }
-  entered() {
-    this.menu = this.menu.filter((f) => !f.temp);
+
+  onSourceListEntered() {
+    this.dataType = this.dataType.filter((f) => !f.temp);
   }
 
+  onSubmit() {
+    console.log('myMainFormBuilder', this.myMainFormBuilder);
+  }
+
+  addBook(event: any) {
+    this.myFormBuilder = this.formBuilder.group({});
+    this.myFormBuilder.addControl(
+      'type',
+      new FormControl('', Validators.required)
+    );
+    this.myFormBuilder.addControl(
+      'value',
+      new FormControl('', Validators.required)
+    );
+    this.myFormBuilder.controls['type'].setValue(event.type);
+    this.myFormBuilder.controls['value'].setValue('');
+    this.myMainFormBuilder.controls['arrayData'].push(this.myFormBuilder);
+    this.newTable = this.table;
+  }
 }

@@ -16,7 +16,7 @@ import { PageCategorytComponent } from './page-category/page-category.component'
 import { HttpClientModule } from '@angular/common/http';
 import { AdminCreatePageDataComponent } from './create-page-data/admin-create-page-data.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {CdkDrag, CdkDropList, CdkDropListGroup} from '@angular/cdk/drag-drop';
+import {CdkDrag, CdkDragPreview, CdkDropList, CdkDropListGroup} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -56,6 +56,7 @@ import {CdkDrag, CdkDropList, CdkDropListGroup} from '@angular/cdk/drag-drop';
     CdkDrag,
     CdkDropList,
     CdkDropListGroup,
+    CdkDragPreview
   ],
   providers: []
 })

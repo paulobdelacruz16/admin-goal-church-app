@@ -1,43 +1,76 @@
-
-<div class="drap-copy">
-  <div>
-    <ul
-      class="menu"
-      cdkDropList
-      #menuList="cdkDropList"
-      [cdkDropListData]="menu"
-      cdkDropListSortingDisabled
-      [cdkDropListConnectedTo]="[tableList]"
-      (cdkDropListDropped)="drop($event)"
-      (cdkDropListExited)="exited($event)"
-      (cdkDropListEntered)="entered()"
-    >
-      <li class="item" *ngFor="let item of menu" cdkDrag [cdkDragData]="item">
-        <div class="item" *cdkDragPlaceholder>
-          <a>{{ item.title }}</a>
-        </div>
-        <a>{{ item.title }}</a>
-      </li>
-    </ul>
-  </div>
-
-  <div
-    class="table"
-    cdkDropList
-    #tableList="cdkDropList"
-    [cdkDropListData]="table"
-    (cdkDropListDropped)="drop($event)"
-  >
-    <div class="content">
-      <div>
-        <div class="item" *ngFor="let item of table; let idx = index" cdkDrag>
-          <p>Type - {{ item.title }}</p>
-          <div>
-            <label class="label-input" for="name">Name:</label>
-            <input class="input admin-content-input" type="text"/>
+<div>
+  <form [formGroup]="myMainFormBuilder" novalidate>
+    <div class="col-md-12">
+      <h2>Create new custom data</h2>
+      <div class="page-name">
+        <label class="label-input" for="name">Page name:</label>
+        <input class="input admin-content-input" type="text" />
+        <button class="submit-btn" (click)="onSubmit()">Save</button>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div>
+          <div
+            class="menu"
+            cdkDropList
+            #menuList="cdkDropList"
+            [cdkDropListData]="dataType"
+            cdkDropListSortingDisabled
+            [cdkDropListConnectedTo]="[tableList]"
+            [cdkDropListEnterPredicate]="noReturnPredicate"
+            (cdkDropListExited)="onSourceListExited($event)"
+            (cdkDropListEntered)="onSourceListEntered()"
+          >
+            <div class="flex-box-drop">
+              <div
+                class="item"
+                *ngFor="let item of dataType"
+                cdkDrag
+                [cdkDragData]="item"
+              >
+                <a>{{ item.label }}</a>
+                <div class="item" *cdkDragPreview>
+                  <a>{{ item.label }}</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <div class="panel-body">
+        <div
+          class="table"
+          cdkDropList
+          #tableList="cdkDropList"
+          [cdkDropListData]="table"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div class="content" formArrayName="arrayData">
+            <div
+              class="item"
+              *ngFor="let item of newTable; let idx = index"
+              cdkDrag
+             
+            >
+              <div *ngIf="item.label">
+                <p>Type - {{ item.label }}</p>
+                <div  id="{{item?.type}}"  [formGroupName]="idx">
+                  <label class="label-input" for="name">Name:</label>
+                  <input
+                    class="input admin-content-input"
+                    type="text"
+                    formControlName="value"
+                    id="{{idx}}"
+                  />
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer"></div>
     </div>
-  </div>
+  </form>
 </div>
