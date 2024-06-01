@@ -41,15 +41,16 @@ export class AdminCreatePageDataComponent implements OnInit {
     this.myFormBuilder = this.formBuilder.group({});
     // this.myMainFormBuilder = this.formBuilder.group({});
     this.myMainFormBuilder = this.formBuilder.group({
+      pageName: ['', [Validators.required, Validators.minLength(1)]],
       arrayData: this.formBuilder.array([]),
     });
   }
 
   dataType: Array<any> = [
-    { label: 'Text', type: 'text', id: 1 },
-    { label: 'Paragraph', type: 'paragraph', id: 2 },
-    { label: 'Image', type: 'image', id: 3 },
-    { label: 'Card', type: 'card', id: 4 },
+    { label: 'Text', type: 'text', id: 0 },
+    { label: 'Paragraph', type: 'paragraph', id: 1 },
+    { label: 'Image', type: 'image', id: 2 },
+    { label: 'Card', type: 'card', id: 3 },
   ];
   table: Array<any> = [];
   newTable: any;
@@ -94,6 +95,16 @@ export class AdminCreatePageDataComponent implements OnInit {
 
   onSubmit() {
     console.log('myMainFormBuilder', this.myMainFormBuilder);
+    if(this.myMainFormBuilder.valid){
+      this.configService.dynamicAddApi({
+        body: this.myMainFormBuilder.value,
+        url: 'api/dynamicPageContent',
+      })
+      .subscribe((data: any) => {
+        console.log('success', data);
+      });
+    }
+
   }
 
   addBook(event: any) {
