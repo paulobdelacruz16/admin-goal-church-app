@@ -1,67 +1,79 @@
 <div class="admin-user" *ngIf="mainData && category">
   <button class="submit-btn" (click)="onSubmit()">Save</button>
   <form [formGroup]="myMainFormBuilder" novalidate>
-    <div class="container">
+    <div class="container" formArrayName="arrayData">
       <div
         class="row justify-content-center"
-        *ngFor="let section of this.uiDataModel | keyvalue"
-        class="section-group" formGroupName="{{section?.key}}"
+        *ngFor="let item of this.mainData.data.arrayData; let i = index"
+        class="section-group" formGroupName="{{i}}"
       >
-        <div *ngFor="let item of section?.value;  let i = index">
-          <ng-container *ngIf="item.type == 'array-text'">
-            <div class="container-array-text">
+          <ng-container *ngIf="item.type == 'card'">
+            <div class="container-array-text" formArrayName="cardGroup">
               <label class="label-input" for="name">{{ item.label }} </label>
               <div
-                *ngFor="let item2 of item.value; index as id"
+                *ngFor="let item2 of item.cardGroup; index as id"
                 class="div-spacer"
               >
-                <div class="col-12" formArrayName="card">
-                  <div *ngFor="let item3 of item2 | keyvalue; index as id2">
-                    <div *ngIf="item3.key !== '_id'" [formGroupName]="id">
+                <div class="col-12">
+                    <div [formGroupName]="id">
                       <label class="label-input" for="name"
-                        >{{ item3.key }}
+                        >{{ item2.name }}
                       </label>
                       <input
                         class="input admin-content-input"
                         type="text"
-                        id="{{ item3.key }}"
-                        name="{{ item3.key }}"
-                        formControlName="{{ item3.key }}"
+                        id="{{ item2.name }}"
+                        name="{{ item2.name }}"
+                        formControlName="{{ item2.value }}"
                       />
 
-                      <button *ngIf="item3.key == 'image'" (click)="onUpdateImage(section.key, item.name, item3.key, id)">Update Image</button>
+                      <!-- <button *ngIf="item3.key == 'image'" (click)="onUpdateImage(section.key, item.name, item3.key, id)">Update Image</button> -->
 
                     </div>
-                  </div>
                 </div>
               </div>
             </div>
-            <button (click)="onAddCard(section.key, i)">Add card</button>
-            <button (click)="onRemoveCard(section.key, i)">remove card</button>
+            <button (click)="onAddCard(item.key, i)">Add card</button>
+            <button (click)="onRemoveCard(item.key, i)">remove card</button>
 
           </ng-container>
 
           <ng-container *ngIf="item.type == 'text'">
             <div class="col-12">
-              <label class="label-input" for="name">{{ item.label }} </label>
+              <label class="label-input" for="name">{{ item.name }} </label>
               <input
                 class="input"
                 type="text"
-                formControlName="{{ item.name }}"
+                formControlName="value"
               />
-              <button *ngIf="item.name == 'image'" (click)="onUpdateImage(section.key, item.name, null, null)">Update Image</button>
+              <!-- <button *ngIf="item.name == 'image'" (click)="onUpdateImage(section.key, item.name, null, null)">Update Image</button> -->
             </div>
           </ng-container>
 
-          <ng-container *ngIf="item.type == 'text-area'">
+          <ng-container *ngIf="item.type == 'paragraph'">
             <div class="col-12">
-              <label class="label-input" for="name">{{ item.label }} </label>
+              <label class="label-input" for="name">{{ item.name }} </label>
              <textarea  class="input" type="text"
-             formControlName="{{ item.name }}" rows="4" cols="50">
+             formControlName="value" rows="4" cols="50">
              </textarea>
             </div>
           </ng-container>
-        </div>
+
+
+          <ng-container *ngIf="item.type == 'image'">
+            <div class="col-12">
+              <label class="label-input" for="name">{{ item.name }} </label>
+              <input
+                class="input"
+                type="text"
+                formControlName="value"
+              />
+              <button (click)="onUpdateImage(i, item.name, null, null)">Update Image</button>
+            </div>
+          </ng-container>
+
+                              
+
       </div>
     </div>
   </form>

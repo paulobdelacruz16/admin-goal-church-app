@@ -20,7 +20,7 @@ export class DynmamicApiController {
   async getDynamicData(req: any, res: any) {
     const param = req.params.url.replace(/^./, "");
     console.log('param123', param);
-    var url = `http://localhost:3001/api/DynamicPageContent/${param}`
+    var url = `http://localhost:3001/api/DynamicPageContentv1/${param}`
     var response = await fetch(url, {
       method: 'GET',
       headers: {'Content-Type': 'application/json'},

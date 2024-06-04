@@ -3,3 +3,14 @@
       <a  routerLink="/admin/events/{{item | lowercase}}">{{item }}</a>
   </div>
 </div>
+
+
+<div style="margin: 20px; height: 100px;">
+
+</div>
+
+<div class="admin-page-category" *ngIf="mainCategoryv1">
+  <div class="main-category" *ngFor="let item of mainCategoryv1;  let i = index" >
+      <a  routerLink="/admin/events/{{item | lowercase}}">{{item }}</a>
+  </div>
+</div>

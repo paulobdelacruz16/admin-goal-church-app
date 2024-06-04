@@ -32,70 +32,121 @@ export class AdminDynamicContentComponent implements OnInit {
   dataModel: any;
   selectedformBuilder: any;
   cardCounter: boolean = true;
-  cardForm = this.formBuilder.group({});
+  cardForm:any;
   // uiDataModel: any = {}
   uiDataModel: { [key: string]: any[] } = {};
-  @Input() mainData:any;
-  @Input() category:any;
-  @Input() cta:any;
-  @Input() action:any;
-  
+  @Input() mainData: any;
+  @Input() category: any;
+  @Input() cta: any;
+  @Input() action: any;
+
+  // ngOnInit(): void {
+  //   this.myFormBuilder = this.formBuilder.group({});
+  //   this.myMainFormBuilder = this.formBuilder.group({});
+  //   console.log('mainData', this.mainData.data);
+  //     for (var sections in this.mainData.data) {
+  //       if (sections !== '_id' && sections !== '__v') {
+  //         this.addMainGroupCard(sections);
+  //         this.uiDataModel[sections] = [];
+  //         for (var key in this.mainData.data[sections]) {
+  //           if (key !== '_id' && key !== '__v') {
+  //             const dataModel: any = [
+  //               { label: 'Title', type: 'text', name: 'title' },
+  //               { label: 'Description', type: 'text', name: 'description' },
+  //               { label: 'Paragraph', type: 'text-area', name: 'paragraph' },
+  //               { label: 'Url', type: 'text', name: 'url' },
+  //               { label: 'Image', type: 'text', name: 'image' },
+  //               { label: 'Verse', type: 'text', name: 'verse' },
+  //               { label: 'Card', type: 'array-text', name: 'card' },
+  //               { label: 'Page Name', type: 'text', name: 'page_name' },
+  //             ];
+  //             const indexFound = dataModel.findIndex(
+  //               (x: any) => x.name === key
+  //             );
+
+  //             dataModel[indexFound].value = this.mainData.data[sections][key];
+  //             dataModel[indexFound].sections = sections;
+  //             this.uiDataModel[sections].push(dataModel[indexFound]);
+
+  //             if (Array.isArray(this.mainData.data[sections][key])) {
+  //               for (var index in this.mainData.data[sections][key]) {
+  //                 this.cardForm = this.formBuilder.group({});
+  //                 this.addGroupCard(sections, key);
+  //                 for (var key2 in this.mainData.data[sections][key][index]) {
+  //                   if (key2 !== '_id' && key2 !== '__v') {
+  //                     this.addCard(key2);
+  //                     this.myMainFormBuilder.controls[sections].controls[
+  //                       key
+  //                     ].controls[index].controls[key2].setValue(
+  //                       this.mainData.data[sections][key][index][key2]
+  //                     );
+  //                   }
+  //                 }
+  //               }
+  //             } else {
+  //               this.myMainFormBuilder.controls[sections].addControl(
+  //                 key,
+  //                 new FormControl('', Validators.required)
+  //               );
+  //               this.myMainFormBuilder.controls[sections].controls[
+  //                 key
+  //               ].setValue(this.mainData.data[sections][key]);
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+
+  // }
+
   ngOnInit(): void {
     this.myFormBuilder = this.formBuilder.group({});
-    this.myMainFormBuilder = this.formBuilder.group({});
-      for (var sections in this.mainData.data) {
-        if (sections !== '_id' && sections !== '__v') {
-          this.addMainGroupCard(sections);
-          this.uiDataModel[sections] = [];
-          for (var key in this.mainData.data[sections]) {
-            if (key !== '_id' && key !== '__v') {
-              const dataModel: any = [
-                { label: 'Title', type: 'text', name: 'title' },
-                { label: 'Description', type: 'text', name: 'description' },
-                { label: 'Paragraph', type: 'text-area', name: 'paragraph' },
-                { label: 'Url', type: 'text', name: 'url' },
-                { label: 'Image', type: 'text', name: 'image' },
-                { label: 'Verse', type: 'text', name: 'verse' },
-                { label: 'Card', type: 'array-text', name: 'card' },
-                { label: 'Page Name', type: 'text', name: 'page_name' },
-              ];
-              const indexFound = dataModel.findIndex(
-                (x: any) => x.name === key
-              );
+    this.cardForm = this.formBuilder.array([]);
 
-              dataModel[indexFound].value = this.mainData.data[sections][key];
-              dataModel[indexFound].sections = sections;
-              this.uiDataModel[sections].push(dataModel[indexFound]);
+    // this.myMainFormBuilder = this.formBuilder.group({});
+    this.myMainFormBuilder = this.formBuilder.group({
+      pageName: ['', [Validators.required, Validators.minLength(1)]],
+      arrayData: this.formBuilder.array([]),
+    });
+    console.log('mainData', this.mainData.data);
 
-              if (Array.isArray(this.mainData.data[sections][key])) {
-                for (var index in this.mainData.data[sections][key]) {
-                  this.cardForm = this.formBuilder.group({});
-                  this.addGroupCard(sections, key);
-                  for (var key2 in this.mainData.data[sections][key][index]) {
-                    if (key2 !== '_id' && key2 !== '__v') {
-                      this.addCard(key2);
-                      this.myMainFormBuilder.controls[sections].controls[
-                        key
-                      ].controls[index].controls[key2].setValue(
-                        this.mainData.data[sections][key][index][key2]
-                      );
-                    }
-                  }
-                }
-              } else {
-                this.myMainFormBuilder.controls[sections].addControl(
-                  key,
-                  new FormControl('', Validators.required)
-                );
-                this.myMainFormBuilder.controls[sections].controls[
-                  key
-                ].setValue(this.mainData.data[sections][key]);
-              }
-            }
-          }
+    for (let i = 0; i < this.mainData.data.arrayData.length; i++) {
+      this.myFormBuilder = this.formBuilder.group({});
+      if (this.mainData.data.arrayData[i].type === 'card') {
+        if(this.mainData.data.arrayData[i].value.length === 0){
+          this.myMainFormBuilder.controls['arrayData'].push(
+            this.formBuilder.group({})
+          );
+          this.myMainFormBuilder.controls['arrayData'].controls[i].addControl('cardGroup', this.formBuilder.array([]));
+        }else{
+          this.myMainFormBuilder.controls['arrayData'].controls[i].addControl('cardGroup', this.formBuilder.array([]));
         }
+        for (
+          let i2 = 0;
+          i2 < this.mainData.data.arrayData[i].value.length;
+          i2++
+        ) {
+          this.cardForm = this.formBuilder.group({});
+          this.cardForm.addControl(
+            'value',
+            new FormControl('', Validators.required)
+          );
+          this.myMainFormBuilder.controls['arrayData'].controls[i].controls['cardGroup'].push(this.cardForm);
+        }
+      }else{
+        this.myFormBuilder.addControl(
+          'value',
+          new FormControl('', Validators.required)
+        );
+        this.myMainFormBuilder.controls['arrayData'].push(
+          this.myFormBuilder
+        );
       }
 
+      console.log('myMainFormBuilder', this.myMainFormBuilder);
+
+  
+    }
   }
 
   addCard(key2: string) {
@@ -131,25 +182,27 @@ export class AdminDynamicContentComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.action === 'post'){
-      this.configService.dynamicAddApi({
-        body: this.myMainFormBuilder.value,
-        url: 'api/' + this.cta,
-      })
-      .subscribe((data: any) => {
-        console.log('success', data);
-        this.modalRef?.hide();
-      });
-    }else{
-      this.configService.dynamicUpdateApi({ 
-        body: this.myMainFormBuilder.value,
-        url:'api/' + this.cta,
-        id: this.category
-      })
-      .subscribe((data: any) => {
-        console.log('success', data);
-        this.modalRef?.hide();
-      });
+    if (this.action === 'post') {
+      this.configService
+        .dynamicAddApi({
+          body: this.myMainFormBuilder.value,
+          url: 'api/' + this.cta,
+        })
+        .subscribe((data: any) => {
+          console.log('success', data);
+          this.modalRef?.hide();
+        });
+    } else {
+      this.configService
+        .dynamicUpdateApi({
+          body: this.myMainFormBuilder.value,
+          url: 'api/' + this.cta,
+          id: this.category,
+        })
+        .subscribe((data: any) => {
+          console.log('success', data);
+          this.modalRef?.hide();
+        });
     }
   }
 
@@ -161,48 +214,61 @@ export class AdminDynamicContentComponent implements OnInit {
     return Object.keys(answers).map((key) => answers[key]);
   }
 
-  onAddCard(sections: string, i: number) {
+  onAddCard(sections: string, index: number) {
+    // this.cardForm = this.formBuilder.group({});
+    // const key = 'card';
+    // for (var key2 in this.mainData.data[sections][key][0]) {
+    //   if (key2 === '_id' || key2 === '__v') {
+    //   } else {
+    //     this.addCard(key2);
+    //   }
+    // }
+    // this.myMainFormBuilder.controls[sections].controls['card'].push(
+    //   this.cardForm
+    // );
+    // this.uiDataModel[sections][i].value =
+    //   this.myMainFormBuilder.controls[sections].controls[key].value;
+
     this.cardForm = this.formBuilder.group({});
-    const key = 'card';
-    for (var key2 in this.mainData.data[sections][key][0]) {
-      if (key2 === '_id' || key2 === '__v') {
-      } else {
-        this.addCard(key2);
-      }
-    }
-    this.myMainFormBuilder.controls[sections].controls['card'].push(
-      this.cardForm
+    this.cardForm.addControl(
+      'value',
+      new FormControl('', Validators.required)
     );
-    this.uiDataModel[sections][i].value = this.myMainFormBuilder.controls[sections].controls[key].value;
+    this.myMainFormBuilder.controls['arrayData'].controls[index].controls['cardGroup'].push(this.cardForm);
+    console.log('this.myMainFormBuilder', this.myMainFormBuilder);
+
+    // this.mainData.data.arrayData[index].value.push()
+
+    // pag add ng card dapat nakakapag lagay din tayo ng object inside sa card sa pag create pa lang ng value
+
+
   }
 
-  onRemoveCard(sections: string, i:number) {
+  onRemoveCard(sections: string, i: number) {
     const key = 'card';
     const removeIndex = this.uiDataModel[sections][i].value.length - 1;
-    this.myMainFormBuilder.controls[sections].controls[key].removeAt(removeIndex ); 
-    this.uiDataModel[sections][i].value = this.myMainFormBuilder.controls[sections].controls[key].value;
+    this.myMainFormBuilder.controls[sections].controls[key].removeAt(
+      removeIndex
+    );
+    this.uiDataModel[sections][i].value =
+      this.myMainFormBuilder.controls[sections].controls[key].value;
   }
-  
-  onUpdateImage(section:string, key:string,field:any, i:any){
+
+  onUpdateImage(section: any, key: string, field: any, i: any) {
     this.pageUrl = `/images/`;
     this.configService.getAllImages().subscribe((dataImages: any) => {
       const initialState: ModalOptions = {
         initialState: {
           apiImages: dataImages,
-          pageUrl: this.pageUrl
+          pageUrl: this.pageUrl,
         },
       };
       this.modalRef = this.modalService.show(
         ModalView03Component,
         initialState
       );
-      
       this.modalRef.content.messageEvent.subscribe((data: any) => {
-        if(field){
-          this.myMainFormBuilder.controls[section].controls[key].controls[i].controls[field].setValue(data);
-        }else{
-          this.myMainFormBuilder.controls[section].controls[key].setValue(data);
-        }
+        this.myMainFormBuilder.controls['arrayData'].controls[section].controls['value'].setValue(data);
       });
     });
   }

@@ -8,16 +8,22 @@ import { ConfigService } from 'src/app/services/config.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class AdminEventComponent implements OnInit {
-  constructor(
-    private configService: ConfigService,
-  ) {}
+  constructor(private configService: ConfigService) {}
 
-  mainCategory:any;
+  mainCategory: any;
+  mainCategoryv1: any;
+
   ngOnInit(): void {
     this.configService
       .getAllSection({ url: 'getAllUniquePageName' })
       .subscribe((data: any) => {
         this.mainCategory = data.data;
+      });
+
+    this.configService
+      .getAllSection({ url: 'getAllUniquePageNamev1' })
+      .subscribe((data: any) => {
+        this.mainCategoryv1 = data.data;
       });
   }
 }

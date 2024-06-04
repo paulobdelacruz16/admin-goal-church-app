@@ -4,7 +4,11 @@
       <h2>Create new custom data</h2>
       <div class="page-name">
         <label class="label-input" for="name">Page name:</label>
-        <input formControlName="pageName" class="input admin-content-input" type="text" />
+        <input
+          formControlName="pageName"
+          class="input admin-content-input"
+          type="text"
+        />
         <button class="submit-btn" (click)="onSubmit()">Save</button>
       </div>
     </div>
@@ -17,21 +21,26 @@
             #menuList="cdkDropList"
             [cdkDropListData]="dataType"
             cdkDropListSortingDisabled
-            [cdkDropListConnectedTo]="[tableList]"
+            [cdkDropListConnectedTo]="dls"
             [cdkDropListEnterPredicate]="noReturnPredicate"
             (cdkDropListExited)="onSourceListExited($event)"
             (cdkDropListEntered)="onSourceListEntered()"
           >
-            <div class="flex-box-drop">
-              <div
-                class="item"
-                *ngFor="let item of dataType"
-                cdkDrag
-                [cdkDragData]="item"
-              >
-                <a>{{ item.label }}</a>
-                <div class="item" *cdkDragPreview>
+            <div *ngIf="!ctr">
+              <p>loading...</p>
+            </div>
+            <div *ngIf="ctr">
+              <div class="flex-box-drop">
+                <div
+                  class="item"
+                  *ngFor="let item of dataType"
+                  cdkDrag
+                  [cdkDragData]="item"
+                >
                   <a>{{ item.label }}</a>
+                  <div class="item" *cdkDragPreview>
+                    <a>{{ item.label }}</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -44,28 +53,66 @@
           cdkDropList
           #tableList="cdkDropList"
           [cdkDropListData]="table"
+          [cdkDropListConnectedTo]="dls"
           (cdkDropListDropped)="drop($event)"
+          cdkDrag
         >
           <div class="content" formArrayName="arrayData">
             <div
+              id="{{idx}}"
               class="item"
               *ngFor="let item of newTable; let idx = index"
               cdkDrag
-             
+              [formGroupName]="idx"
             >
-              <div *ngIf="item.label">
+              <div *ngIf="item.type !== 'card'">
                 <p>Type - {{ item.label }}</p>
-                <div  id="{{item?.type}}"  [formGroupName]="idx">
+                <div id="{{ item?.type }}">
                   <label class="label-input" for="name">Name:</label>
                   <input
                     class="input admin-content-input"
                     type="text"
-                    formControlName="value"
-                    id="{{idx}}"
+                    formControlName="name"
+                    id="{{ idx }}"
                   />
                 </div>
               </div>
 
+              <div *ngIf="item.type === 'card'">
+                <div
+                  class="table1"
+                  cdkDropList
+                  #cardList="cdkDropList"
+                  [cdkDropListData]="table1"
+                  [cdkDropListConnectedTo]="dls"
+                  (cdkDropListDropped)="drop1($event, idx)"
+                >
+                  <div
+                    class="item1"
+                    *ngFor="let item2 of newTable1; let idx1 = index"
+                    cdkDrag
+                    id="{{idx}}-{{idx1}}"
+                  >
+                    <div class="item2">
+                      <div
+                        *ngIf="item2.type !== 'card'"
+                        formArrayName="cardGroup"
+                      >
+                        <p>Type - {{ item2.label }}</p>
+                        <div id="{{ item2?.type }}" [formGroupName]="idx1">
+                          <label class="label-input" for="name">Name:</label>
+                          <input
+                            class="input admin-content-input"
+                            type="text"
+                            formControlName="name"
+                            id="{{ idx1 }}"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -74,3 +121,12 @@
     </div>
   </form>
 </div>
+
+<!-- 
+<button (click)="openDialog()">Open a draggable dialog</button>
+
+<ng-template>
+  <div class="example-dialog-content" cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+    Drag the dialog around!
+  </div>
+</ng-template> -->
