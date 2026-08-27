@@ -14,8 +14,8 @@
       *ngFor="let item of itemListData.card; index as id"
     >
       <div class="services">
-        <a href="#" class="img-holder" *ngIf="item.image"
-          ><img class="img-responsive" [src]="pageUrl + item.image" alt="{{ item.name }}"
+        <a href="{{item.url}}" class="img-holder" *ngIf="item.url"
+          ><img class="img-responsive" src="{{item.image}}" alt="{{ item.name }}"
         /></a>
         <div class="desc">
           <h3>

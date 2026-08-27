@@ -12,9 +12,7 @@ export class SermonsComponent implements OnInit {
 
   goalContent:any;
   ngOnInit(): void {
-    this.configService
-    .getAllSection({ url: 'sermon' })
-    .subscribe((data: any) => {
+    this.configService.getAllSection({ url: 'sermon' }).subscribe((data: any) => {
      this.goalContent = data.data;
      console.log('homepage - goalContent',   this.goalContent );
     });

@@ -18,8 +18,6 @@ export class VideoCarouselComponent implements OnInit {
 
   @Input() itemListData:any;
   ngOnInit(): void {
-    this.pageUrl = "/images/"
-
   }
 
   openModal(template: TemplateRef<any>, item:any) {
@@ -27,8 +25,4 @@ export class VideoCarouselComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
     this.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl(this.selectedVideoURL);
   }
-
-
-
-  
 }
