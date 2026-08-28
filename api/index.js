@@ -15,6 +15,6 @@ app.get('*.*', express.static(join(process.cwd(), 'dist/goal-church-app/browser'
 
 app.get('*', (req, res) => {
   res.render('index', { req });
-});
+}); 
 
 export default app;
