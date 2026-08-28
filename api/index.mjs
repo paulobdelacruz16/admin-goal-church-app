@@ -1,6 +1,7 @@
-import { join } from 'path';
-import express from 'express';
+import 'zone.js/node';
 import { ngExpressEngine } from '@nguniversal/express-engine';
+import express from 'express';
+import { join } from 'path';
 import { AppServerModule } from '../dist/goal-church-app/server/main.js';
 
 const app = express();
@@ -15,6 +16,6 @@ app.get('*.*', express.static(join(process.cwd(), 'dist/goal-church-app/browser'
 
 app.get('*', (req, res) => {
   res.render('index', { req });
-}); 
+});
 
 export default app;
