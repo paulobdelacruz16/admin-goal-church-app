@@ -10,7 +10,11 @@
     "dev:ssr": "ng run goal-church-app:serve-ssr",
     "serve:ssr": "node dist/goal-church-app/server/main.js",
     "build:ssr": "ng build && ng run goal-church-app:server",
-    "prerender": "ng run goal-church-app:prerender"
+    "prerender": "ng run goal-church-app:prerender",
+    "vercel-build": "npm run build:ssr"
+  },
+  "engines": {
+    "node": "18.20.8"
   },
   "private": true,
   "dependencies": {

@@ -8,6 +8,7 @@ import { join } from 'path';
 
 import { AppServerModule } from './src/main.server';
 const express = require('express');
+const bodyParser = require('body-parser');
 
 // ============================================
 // Load environment variables FIRST
@@ -28,7 +29,7 @@ console.log('Loaded HOST:', process.env['HOST']);
 // Express App
 // ============================================
 
-export function app():any {
+export function app(): any {
   const server = express();
 
   const distFolder = join(
@@ -43,11 +44,14 @@ export function app():any {
     : 'index';
 
 
+  // ============================================
   // Angular Universal
+  // ============================================
+
   server.engine(
     'html',
     ngExpressEngine({
-      bootstrap: AppServerModule,
+      bootstrap: AppServerModule
     })
   );
 
@@ -55,7 +59,10 @@ export function app():any {
   server.set('views', distFolder);
 
 
+  // ============================================
   // Static files
+  // ============================================
+
   server.get(
     '*.*',
     express.static(distFolder, {
@@ -64,8 +71,9 @@ export function app():any {
   );
 
 
+  // ============================================
   // Body parser
-  const bodyParser = require('body-parser');
+  // ============================================
 
   server.use(
     bodyParser.urlencoded({
@@ -76,7 +84,10 @@ export function app():any {
   server.use(bodyParser.json());
 
 
+  // ============================================
   // Images
+  // ============================================
+
   const directoryPath = join(
     __dirname,
     '../../../../public_images'
@@ -89,15 +100,23 @@ export function app():any {
 
 
   // ============================================
-  // IMPORTANT:
-  // Load Routes AFTER dotenv has been configured
+  // Application API routes
   // ============================================
 
-  const { Routes } = require('routes');
+  // routes.ts is in the project root,
+  // so use ./routes instead of routes.
+  const { Routes } = require('./routes');
+
   const routes = new Routes();
+
   routes.apiRoutes(server);
-  // Angular routes
-  server.get('*', (req:any, res:any) => {
+
+
+  // ============================================
+  // Angular SSR fallback
+  // ============================================
+
+  server.get('*', (req: any, res: any) => {
     res.render(indexHtml, {
       req,
       providers: [
@@ -108,6 +127,7 @@ export function app():any {
       ]
     });
   });
+
 
   return server;
 }
@@ -139,7 +159,7 @@ declare const __non_webpack_require__: NodeRequire;
 const mainModule = __non_webpack_require__.main;
 
 const moduleFilename =
-  mainModule && mainModule.filename || '';
+  (mainModule && mainModule.filename) || '';
 
 if (
   moduleFilename === __filename ||
@@ -148,5 +168,9 @@ if (
   run();
 }
 
+
+// ============================================
+// Export Angular server module
+// ============================================
 
 export * from './src/main.server';
