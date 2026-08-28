@@ -9,9 +9,7 @@
   ],
   "functions": {
     "api/index.js": {
-      "includeFiles": [
-        "dist/goal-church-app/**"
-      ]
+      "includeFiles": "dist/goal-church-app/**"
     }
   }
 }
