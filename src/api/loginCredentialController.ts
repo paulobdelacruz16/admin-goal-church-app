@@ -1,10 +1,11 @@
 
 import fetch from 'node-fetch';
+const host = process.env['HOST'];
 
 export class LoginCredentialController {
   
   async findByloginCredential(req: any, res: any) {
-    var url = "http://localhost:3001/api/findByloginCredential"
+    var url = `${host}/api/findByloginCredential`
     var response = await fetch(url, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -18,7 +19,7 @@ export class LoginCredentialController {
   }
   
   async findAllLoginCredential(req: any, res: any) {
-    var url = "http://localhost:3001/api/loginCredential"
+    var url = `${host}/api/loginCredential`
     var response = await fetch(url, {
       method: 'GET',
       headers: {'Content-Type': 'application/json'},
