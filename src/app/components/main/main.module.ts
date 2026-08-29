@@ -30,6 +30,7 @@ import { TextBannerComponent } from '../partials/text-banner/text-banner.compone
 import { PageContainerComponent } from '../partials/page-container/page-container.component';
 import { ImageBannerComponent } from '../partials/image-banner/image-banner.component';
 import { SafeHtmlPipe } from 'src/app/pipe/safe-html.pipe';
+import { LoaderComponent } from '../loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { SafeHtmlPipe } from 'src/app/pipe/safe-html.pipe';
     NewLineHtmlPipe,
     PageContainerComponent,
     ImageBannerComponent,
+    LoaderComponent,
     SafeHtmlPipe
   ],
   exports: [
@@ -82,6 +84,7 @@ import { SafeHtmlPipe } from 'src/app/pipe/safe-html.pipe';
     FlexboxSideComponent,
     PageContainerComponent,
     ImageBannerComponent,
+    LoaderComponent,
     SafeHtmlPipe
   ],
   imports: [

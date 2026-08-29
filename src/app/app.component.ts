@@ -3,7 +3,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Meta } from '@angular/platform-browser';
 import { Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-
+import { LoaderService } from './services/loader.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,7 +14,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
-    private meta: Meta
+    private meta: Meta,
+    private loaderService: LoaderService
   ) {}
 
   navlist: any;

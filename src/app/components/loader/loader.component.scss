@@ -1,0 +1,129 @@
+.main-loader {
+    min-height: 300px;
+    padding: 10px;
+    display: grid;
+    place-items: center;
+    margin: 100px;
+
+    @media (max-width: 768px) {
+        margin: 50px;
+        min-height: 200px;
+    }
+
+    .main-body-loader {
+        .loader-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 150px;
+            height: 150px;
+            /* Only the center is affected */
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 20px;
+
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+            z-index: 9999;
+        }
+
+        /* Loader */
+        .loader {
+            position: relative;
+            width: 60px;
+            height: 60px;
+        }
+
+        .loader-core {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            border-radius: 50%;
+            background: #6366f1;
+
+            box-shadow:
+                0 0 10px #6366f1,
+                0 0 25px rgba(99, 102, 241, 0.7);
+        }
+
+        /* Rings */
+        .loader-orbit {
+            position: absolute;
+            inset: 3px;
+
+            border: 2px solid transparent;
+            border-top-color: #6366f1;
+            border-right-color: rgba(99, 102, 241, 0.25);
+
+            border-radius: 50%;
+
+            animation: spin 1.2s linear infinite;
+        }
+
+        .loader-orbit-2 {
+            inset: 11px;
+
+            border-top-color: #a855f7;
+            border-right-color: transparent;
+
+            animation: spin-reverse 0.9s linear infinite;
+        }
+
+        /* Text */
+        .loader-text {
+            margin-top: 12px;
+
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+
+            color: #4b5563;
+        }
+
+        .dots::after {
+            content: "";
+            display: inline-block;
+            width: 18px;
+
+            animation: dots 1.4s steps(4, end) infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin-reverse {
+            to {
+                transform: rotate(-360deg);
+            }
+        }
+
+        @keyframes dots {
+            0% {
+                content: "";
+            }
+
+            25% {
+                content: ".";
+            }
+
+            50% {
+                content: "..";
+            }
+
+            75% {
+                content: "...";
+            }
+        }
+    }
+
+}
