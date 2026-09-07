@@ -12,20 +12,20 @@ import { LoaderService } from 'src/app/services/loader.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
-  goalContent:any;
+  goalContent: any;
 
   constructor(
     private configService: ConfigService,
     private loaderService: LoaderService
-    ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loaderService.start();
     this.configService
-    .getAllSection({ url: 'home' })
-    .subscribe((data: any) => {
-     this.goalContent = data.data;
-     this.loaderService.stop();
-    });
+      .getAllSection({ url: 'home' })
+      .subscribe((data: any) => {
+        this.goalContent = data?.data?.data;
+        this.loaderService.stop();
+      });
   }
 }

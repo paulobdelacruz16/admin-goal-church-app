@@ -1,5 +1,5 @@
 <div *ngIf="goalContent">
-  <app-video-carousel [itemListData]="goalContent?.section1.card">
+  <app-video-carousel [itemListData]="goalContent?.section1">
   </app-video-carousel>
 
   <app-text-banner [itemListData]="goalContent?.section2">
@@ -16,7 +16,6 @@
 
   <app-text-carousel
   [itemListData]="goalContent?.section5">
-
   </app-text-carousel>
   
   <app-box-item-list

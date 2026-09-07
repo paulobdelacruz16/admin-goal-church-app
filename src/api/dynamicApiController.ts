@@ -7,7 +7,7 @@ export class DynmamicApiController {
    async getAllData(req: any, res: any) {
     console.log('welcome to get all data DynmamicApiController test');
     const param = req.params.url.replace(/^./, "");
-    var url = `${host}/api/${param}`
+    var url = `${host}/api/formdata/latest/${param}`
     console.log('url', url);
     var response = await fetch(url, {
       method: 'GET',
