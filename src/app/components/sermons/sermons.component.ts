@@ -5,16 +5,16 @@ import { LoaderService } from 'src/app/services/loader.service';
 @Component({
   selector: 'app-sermons',
   templateUrl: './sermons.component.html',
-  styleUrls: [ './sermons.component.scss' ]
+  styleUrls: ['./sermons.component.scss']
 })
 export class SermonsComponent implements OnInit {
-  constructor(  private configService: ConfigService, private loaderService: LoaderService) {}
+  constructor(private configService: ConfigService, private loaderService: LoaderService) { }
 
-  goalContent:any;
+  goalContent: any;
   ngOnInit(): void {
     this.loaderService.start();
     this.configService.getAllSection({ url: 'sermon' }).subscribe((data: any) => {
-     this.goalContent = data.data;
+      this.goalContent = data?.data;
       this.loaderService.stop();
     });
   }
