@@ -31,6 +31,9 @@ import { PageContainerComponent } from '../partials/page-container/page-containe
 import { ImageBannerComponent } from '../partials/image-banner/image-banner.component';
 import { SafeHtmlPipe } from 'src/app/pipe/safe-html.pipe';
 import { LoaderComponent } from '../loader/loader.component';
+import { MissionComponent } from '../about/mission/mission.component';
+import { StaffComponent } from '../about/staff/staff.component';
+import { BeliefsComponent } from '../about/beliefs/beliefs.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,10 @@ import { LoaderComponent } from '../loader/loader.component';
     PageContainerComponent,
     ImageBannerComponent,
     LoaderComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    MissionComponent,
+    StaffComponent,
+    BeliefsComponent
   ],
   exports: [
     MainComponent,
@@ -85,7 +91,10 @@ import { LoaderComponent } from '../loader/loader.component';
     PageContainerComponent,
     ImageBannerComponent,
     LoaderComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    MissionComponent,
+    StaffComponent,
+    BeliefsComponent
   ],
   imports: [
     CommonModule,

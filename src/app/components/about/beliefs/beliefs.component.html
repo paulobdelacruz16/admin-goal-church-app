@@ -1,0 +1,16 @@
+<section class="about-beliefs" aria-labelledby="beliefs-title">
+  <div class="beliefs-intro">
+    <div>
+      <p class="eyebrow">Our Beliefs</p>
+      <h2 id="beliefs-title">Statement of faith</h2>
+    </div>
+    <p>These core beliefs are based on the foundational truths taught in the Bible. Our teachings and ministries are rooted in and flow out of these doctrines.</p>
+  </div>
+
+  <div class="belief-list">
+    <details *ngFor="let belief of beliefs">
+      <summary>{{ belief.title }}</summary>
+      <p>{{ belief.content }}</p>
+    </details>
+  </div>
+</section>

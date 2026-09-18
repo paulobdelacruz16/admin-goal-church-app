@@ -2,10 +2,13 @@
   padding: 5em 3em;
   clear: both;
   background: #fafafa;
+  max-width: 1060px;
+  margin: 0 auto;
 
   .fh5co-heading {
     margin-bottom: 5em;
     margin: 0 auto;
+
     h2 {
       font-size: 30px;
       margin-bottom: 20px;
@@ -18,6 +21,7 @@
   .sermon-entry {
     margin-bottom: 40px;
     text-align: center;
+
     h3 {
       margin-bottom: 5px;
       font-size: 18px;
@@ -44,6 +48,7 @@
       -webkit-transition: 0.3s;
       -o-transition: 0.3s;
       transition: 0.3s;
+
       a {
         width: 70px;
         height: 70px;
@@ -60,6 +65,7 @@
         position: relative;
         color: #658361;
         cursor: pointer;
+
         i {
           vertical-align: middle;
           height: 70px;
@@ -75,22 +81,34 @@
 }
 
 
-.modal-body{
+.modal-body {
   position: relative;
   flex: 1 1 auto;
   padding: 15px;
   height: auto;
+
   .embed-container {
-    position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; 
-   }
-   .embed-container iframe, .embed-container object,
-    .embed-container embed {
-     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-   }
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+  }
+
+  .embed-container iframe,
+  .embed-container object,
+  .embed-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
-iframe{
-  width:100%;
-  height:100%;
+
+iframe {
+  width: 100%;
+  height: 100%;
 }
 
 
@@ -110,5 +128,3 @@ iframe{
   // height: 350px;
   height: auto;
 }
-
-

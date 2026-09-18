@@ -55,6 +55,9 @@
   .banner-image{
     img{
       filter: brightness(44%);
+       object-fit: cover;
+       height: auto;
+       max-height: 800px;
     }
 
   }

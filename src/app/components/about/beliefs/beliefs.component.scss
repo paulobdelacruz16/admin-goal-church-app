@@ -1,0 +1,85 @@
+.about-beliefs {
+  padding: 88px 7%;
+  background: #243b3a;
+  color: #fff;
+
+  .beliefs-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: end;
+    max-width: 1160px;
+    margin: 0 auto 48px;
+  }
+
+  .eyebrow {
+    margin: 0 0 12px;
+    color: #e2a477;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.12;
+    color: #fff;
+  }
+
+  .beliefs-intro > p {
+    margin: 0;
+    color: #d4dfda;
+    line-height: 1.8;
+  }
+
+  .belief-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 48px;
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+
+  details {
+    border-top: 1px solid rgba(255, 255, 255, .25);
+  }
+
+  details:last-child { border-bottom: 1px solid rgba(255, 255, 255, .25); }
+
+  summary {
+    position: relative;
+    padding: 22px 34px 22px 0;
+    cursor: pointer;
+    list-style: none;
+    font-family: Georgia, serif;
+    font-size: 20px;
+  }
+
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    position: absolute;
+    right: 0;
+    content: '+';
+    color: #e2a477;
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+  }
+  details[open] summary::after { content: '\2212'; }
+
+  details p {
+    max-width: 520px;
+    margin: -4px 0 24px;
+    color: #d4dfda;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 700px) {
+    padding: 56px 24px;
+    .beliefs-intro, .belief-list { grid-template-columns: 1fr; gap: 0; }
+    .beliefs-intro > p { margin-top: 28px; }
+  }
+}

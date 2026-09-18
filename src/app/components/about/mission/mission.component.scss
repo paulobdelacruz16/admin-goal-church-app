@@ -1,0 +1,64 @@
+.about-mission {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 56px;
+  padding: 80px 7%;
+  background: #fff;
+
+  .mission-copy {
+    max-width: 600px;
+    justify-self: end;
+  }
+
+  .eyebrow {
+    margin: 0 0 12px;
+    color: #a35d3d;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0;
+    color: #243b3a;
+    font-family: Georgia, serif;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 1.12;
+  }
+
+  .mission-rule {
+    width: 72px;
+    height: 3px;
+    margin: 28px 0;
+    background: #c68153;
+  }
+
+  p:not(.eyebrow) {
+    color: #596361;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .mission-media {
+    align-self: center;
+  }
+
+  iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #172b2a;
+    border: 0;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 56px 24px;
+
+    .mission-copy {
+      justify-self: stretch;
+    }
+  }
+}
