@@ -1,3 +1,8 @@
-<div class="image-banner" *ngIf="goalContent">
-    <img class="img-responsive" [src]="goalContent?.image" alt="image"/>
+<div class="image-banner">
+    <div class="image-container" *ngIf="goalContent">
+        <img class="img-responsive" [src]="goalContent?.image" alt="image" />
+        <div class="overlay-text">
+           {{goalContent?.description}}
+        </div>
+    </div>
 </div>

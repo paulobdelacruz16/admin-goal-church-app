@@ -1,4 +1,4 @@
-.image-banner{
+.image-banner {
   img {
     width: 100%;
     overflow: hidden;
@@ -9,4 +9,42 @@
     border: 0;
     outline: 0;
   }
+
+  .image-container {
+    position: relative;
+  }
+
+  .image-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 650px;
+    object-fit: cover;
+  }
+
+  .image-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 62%);
+    /* adjust darkness */
+  }
+
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 6.5rem;
+    text-align: center;
+    z-index: 1;
+    font-weight: bold;
+
+    /* ensures text is above the dark layer */
+  }
+
 }
