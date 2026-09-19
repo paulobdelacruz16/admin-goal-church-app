@@ -1,7 +1,7 @@
-<div class="about">
+<div class="about" *ngIf="goalContent">
   <!-- <app-image-banner [goalContent]="goalContent?.section1"></app-image-banner> -->
-  <app-about-mission></app-about-mission>
-  <app-about-staff></app-about-staff>
+  <app-about-mission  [goalContent]="goalContent?.section1"></app-about-mission>
+  <app-about-staff [goalContent]="goalContent?.section2"></app-about-staff>
   <app-about-beliefs></app-about-beliefs>
 </div>
   

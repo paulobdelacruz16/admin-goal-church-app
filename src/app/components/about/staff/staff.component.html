@@ -3,34 +3,78 @@
     <h2 id="staff-title">Meet our team</h2>
   </div>
 
-  <section
-    class="staff-category"
-    *ngFor="let category of staffCategories"
-    [ngClass]="{
-      'senior-pastor-category': category.title === 'Senior Pastor',
-      'pastoral-staff-category': category.title === 'Pastoral Staff',
-      'ministry-heads-category': category.title === 'Ministry Heads',
-      'p12-men-category': category.title === 'P12 Men',
-      'p12-women-category': category.title === 'P12 Women'
-    }"
-    [attr.aria-labelledby]="category.title | lowercase"
-  >
+  <section class="staff-category senior-pastor-category" aria-labelledby="senior-pastor">
     <div class="staff-heading category-heading">
-      <p class="eyebrow" [id]="category.title | lowercase">
-        {{ category.title }} <span class="category-count">{{ category.members.length }}</span>
+      <p class="eyebrow" id="senior-pastor">
+        {{ goalContent.sectiontitle1 }} <span class="category-count">{{ goalContent.seniorpastor.length }}</span>
       </p>
     </div>
-
-    <div class="staff-grid" *ngIf="category.members.length; else emptyCategory">
-      <article class="staff-member" *ngFor="let member of category.members">
+    <div class="staff-grid">
+      <article class="staff-member" *ngFor="let member of goalContent.seniorpastor">
         <img [src]="member.image" [alt]="member.name" loading="lazy" />
         <h3>{{ member.name }}</h3>
         <p>{{ member.role }}</p>
       </article>
     </div>
+  </section>
 
-    <ng-template #emptyCategory>
-      <p class="empty-category">Team members will be added here soon.</p>
-    </ng-template>
+  <section class="staff-category pastoral-staff-category" aria-labelledby="pastoral-staff">
+    <div class="staff-heading category-heading">
+      <p class="eyebrow" id="pastoral-staff">
+        {{ goalContent.sectiontitle2 }} <span class="category-count">{{ goalContent.pastoralstaff.length }}</span>
+      </p>
+    </div>
+    <div class="staff-grid">
+      <article class="staff-member" *ngFor="let member of goalContent.pastoralstaff">
+        <img [src]="member.image" [alt]="member.name" loading="lazy" />
+        <h3>{{ member.name }}</h3>
+        <p>{{ member.role }}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="staff-category p12-men-category" aria-labelledby="p12-men">
+    <div class="staff-heading category-heading">
+      <p class="eyebrow" id="p12-men">
+        {{ goalContent.sectiontitle3 }} <span class="category-count">{{ goalContent.p12men.length }}</span>
+      </p>
+    </div>
+    <div class="staff-grid">
+      <article class="staff-member" *ngFor="let member of goalContent.p12men">
+        <img [src]="member.image_1789793716676" [alt]="member.name" loading="lazy" />
+        <h3>{{ member.name }}</h3>
+        <p>{{ member.role }}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="staff-category p12-women-category" aria-labelledby="p12-women">
+    <div class="staff-heading category-heading">
+      <p class="eyebrow" id="p12-women">
+        {{ goalContent.sectiontitle4 }} <span class="category-count">{{ goalContent.p12women.length }}</span>
+      </p>
+    </div>
+    <div class="staff-grid">
+      <article class="staff-member" *ngFor="let member of goalContent.p12women">
+        <img [src]="member.image" [alt]="member.name" loading="lazy" />
+        <h3>{{ member.name }}</h3>
+        <p>{{ member.role }}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="staff-category ministry-heads-category" aria-labelledby="ministry-heads">
+    <div class="staff-heading category-heading">
+      <p class="eyebrow" id="ministry-heads">
+        {{ goalContent.sectiontitle5 }} <span class="category-count">{{ goalContent.ministryheads.length }}</span>
+      </p>
+    </div>
+    <div class="staff-grid">
+      <article class="staff-member" *ngFor="let member of goalContent.ministryheads">
+        <img [src]="member.image_1789793721575" [alt]="member.name" loading="lazy" />
+        <h3>{{ member.name }}</h3>
+        <p>{{ member.role }}</p>
+      </article>
+    </div>
   </section>
 </section>

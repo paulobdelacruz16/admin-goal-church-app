@@ -13,13 +13,16 @@ export class AboutComponent implements OnInit {
   constructor(
     private configService: ConfigService,
     private loaderService: LoaderService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    // this.loaderService.start();
-    // this.configService.getDynamicPageContent({ url: 'home' }).subscribe((data: any) => {
-    //   this.goalContent = data.data;
-    //   this.loaderService.stop();
-    // });
+    this.loaderService.start();
+    this.configService
+      .getAllSection({ url: 'about' })
+      .subscribe((data: any) => {
+        this.goalContent = data?.data?.data;
+        console.log('goalContent', this.goalContent);
+        this.loaderService.stop();
+      });
   }
 }
