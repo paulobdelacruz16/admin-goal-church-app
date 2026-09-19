@@ -43,6 +43,8 @@ export class AboutComponent implements OnInit {
     this.meta.updateTag({ property: 'og:title', content: this.pageTitle });
     this.meta.updateTag({ property: 'og:description', content: this.pageDescription });
     this.meta.updateTag({ property: 'og:image', content: this.pageImage });
+    this.meta.updateTag({ property: 'og:image:secure_url', content: this.pageImage });
+    this.meta.updateTag({ property: 'og:image:type', content: 'image/jpeg' });
     this.meta.updateTag({ property: 'og:image:alt', content: this.pageTitle });
     this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
     this.meta.updateTag({ name: 'twitter:title', content: this.pageTitle });
