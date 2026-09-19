@@ -13,7 +13,7 @@ export class AboutComponent implements OnInit {
 
   private readonly pageUrl = 'https://goal-church-app.vercel.app/about';
   private readonly pageTitle = 'GOAL Church - About us';
-  private readonly pageDescription = 'about us';
+  private readonly pageDescription = 'A Church is not the building or any establishments, it is the person or the group of people who believes and accept Jesus Christ as their Lord and Savior. Everyone is belonged here, come and join us.';
   private readonly pageImage = 'https://raw.githubusercontent.com/paulobdelacruz16/images/main/571144950_1116995010587599_1938066918544950676_n.jpg';
 
   constructor(
